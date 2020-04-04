@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <link rel='icon' href='favicon.ico' type='image/x-icon' />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <title>Login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+    </head>
+    <body style="background-color: #eee;">
+        <div class="container">
+            <form style="max-width: 330px; padding: 15px; margin: 0 auto; padding-top: 110px;">
+                <h1>Login</h1>
+                <label for="email">Email Address: </label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required autofocus><br>
+
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required><br>
+
+                <div class="checkbox">
+                    <label>
+                    <input type="checkbox" value="remember"> Remember Me
+                    </label>
+                </div>
+                
+                <input type="submit" class="btn btn-primary" value="Submit">
+                <button type="button" class="btn btn-link">Signup</button>
+                <button type="button" class="btn btn-link">Reset Password</button>
+            </form>
+        </div>
+    </body>
+</html>
