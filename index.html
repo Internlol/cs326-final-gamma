@@ -2,17 +2,37 @@
 <html lang='en'>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <title>Fitness Planner</title>
     </head>
     <body>
-        <h1>Welcome!</h1>
-        <h2>With this website you can create and borrow unique fitness schedules.</h2>
-        <button id="login" type="button">Login</button>
-        <img src="calendar.png"></img>
-        <a href="mycalendars.html"><button id="my_calendars" type="button">My Calendars</button></a>
-        <button id="my_routines" type="button">My Routines</button>
-        <button id="my_workouts" type="button">My Workouts</button>
-        <button id="my_exercises" type="button">My Exercises</button>
+        <div class="container-fluid">
+            <nav class="navbar navbar-light bg-light">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand"><img src="favicon-32x32.png" width=32 height=32 class="d-inline-block align-top" alt="">
+                        Fitness Planner
+                    </a>
+                </div>
+                <!-- <span class="navbar-right"> -->
+                    <!-- <a href="#" class="navbar-right"><button id="login" type="button">Login</button></a> -->
+                <!-- </span> -->
+                <form class="form-inline my-2 my-lg-0 nav navbar-right">
+                    <a class="btn btn-outline-success my-2 my-sm-0" href="login.html">Sign In</a>
+                </form>
+            </nav>
+        </div>
+        <div class="container">
+            <p>Welcome!</p>
+            <p>With this website you can create and borrow unique fitness schedules.</p>
+        </div>
+        <div class="container">
+            <img src="calendar.png"></img>
+        </div>
+        <div class="container">
+            <a href="mycalendars.html"><button id="my_calendars" type="button">My Calendars</button></a>
+            <button id="my_routines" type="button">My Routines</button>
+            <button id="my_workouts" type="button">My Workouts</button>
+            <button id="my_exercises" type="button">My Exercises</button>
+        </div>
     </body>
 </html>
