@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+        <title>Create Workout</title>
+    </head>
+    <body>
+        <!--nav bar start -->
+        <div class="container-fluid">
+            <nav class="navbar navbar-light bg-light">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand"><img src="images/favicon-32x32.png" width=32 height=32 class="d-inline-block align-top" alt="">
+                        Fitness Planner
+                    </a>
+                </div>
+                <form class="form-inline my-2 my-lg-0 nav navbar-right">
+                    <a class="btn btn-outline-success my-2 my-sm-0" href="login.html">Sign In</a>
+                </form>
+            </nav>
+        </div>
+        <!--nav bar end -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1>Create Workout</h1>
+                </div>
+                <div class="col-lg-4">
+                    <a href="myexercises.html"><button id="discard_exercise" type="button">Discard Workout</button></a><br>
+                    <a href="myexercises.html"><button id="create_exercise" type="button">Save and Add Workout</button></a><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <p>
+                        Name Your Workout:
+                    </p>
+                    <input type="text"><br>
+                     <p>
+                        Add a Description:
+                    </p>
+                    <textarea rows="6"></textarea>
+                </div>
+                <div class="col-lg-4">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Current Workout
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Pushups
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Dips
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-4">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Available Exercises
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Pushups
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Squats
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Running
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Dips
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button id="add_workout" type="button">Add exercise</button><br>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
