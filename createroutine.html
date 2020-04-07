@@ -4,9 +4,10 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css">
-        <title>Create Exercise</title>
+        <title>Create Routine</title>
     </head>
     <body>
+        <!--nav bar start -->
         <div class="container-fluid">
             <nav class="navbar navbar-light bg-light">
                 <div class="navbar-header">
@@ -14,68 +15,58 @@
                         Fitness Planner
                     </a>
                 </div>
-                <!-- <span class="navbar-right"> -->
-                    <!-- <a href="#" class="navbar-right"><button id="login" type="button">Login</button></a> -->
-                <!-- </span> -->
                 <form class="form-inline my-2 my-lg-0 nav navbar-right">
                     <a class="btn btn-outline-success my-2 my-sm-0" href="login.html">Sign In</a>
                 </form>
             </nav>
         </div>
+        <!--nav bar end -->
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                    <h1>Create Exercise</h1>
+                <div class="col-lg-8">
+                    <h1>Create Routine</h1>
                 </div>
-                <div class="col-lg-4 col-md-8 col-sm-12 col-xs-12">
-                    <a href="myexercises.html"><button id="discard_exercise" type="button">Discard Exercise</button></a><br>
-                    <a href="myexercises.html"><button id="create_exercise" type="button">Save and Add Exercise</button></a><br>
+                <div class="col-lg-4">
+                    <a href="myexercises.html"><button id="discard_exercise" type="button">Discard Routine</button></a><br>
+                    <a href="myexercises.html"><button id="create_exercise" type="button">Save and Add Routine</button></a><br>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-4">
+                <div class="col-lg-4">
                     <p>
-                        Name Your Exercise:
+                        Name Your Routine:
                     </p>
                     <input type="text">
-                    <p>
-                        Add a Description:
-                    </p>
-                    <textarea rows="6"></textarea>
-                    <p>Add a picture or video:</p>
-                    <button id="upload_media" type="button">Upload</button><br>
                 </div>
-                <div class="col-lg-4 col-md-4">
-                    <p>How many reps for this set?</p>
-                    <input type="text">
-                    <p>How long does this set last?</p>
-                    <input type="text">
-                    <p>How much rest time after this set?</p>
-                    <input type="text"><br>
-                    <button id="add_set" type="button">Add a Set</button><br>
+                <div class="col-lg-4">
                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>
-                                    Set
+                                    Available Workouts
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
-                                    Set 1 Reps: 12 Rest: 30s
+                                    Upper Body
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    Set 2 Reps: 12 Rest: 30s
+                                    Cardio
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+                    <p>Start Time:</p>
+                    <input type="text">
+                    <p>End Time:</p>
+                    <input type="text"><br>
+                    <button id="add_workout" type="button">Add workout</button><br>
                 </div>
-                <div class="col-lg-4 col-md-4">
+                <div class="col-lg-4">
 
                 </div>
             </div>
