@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <link rel='icon' href='favicon.ico' type='image/x-icon' />
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+        <title>Fitness Planner</title>
+    </head>
+    <body style="background-color: #eee;">
+        <div class="container-fluid">
+            <nav class="navbar navbar-light bg-light">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand"><img src="images/favicon-32x32.png" width=32 height=32 class="d-inline-block align-top" alt="">
+                        Fitness Planner
+                    </a>
+                </div>
+                <form class="form-inline my-2 my-lg-0 nav navbar-right">
+                    <a class="btn btn-outline-success my-2 my-sm-0" href="login.html">Sign In</a>
+                </form>
+            </nav>
+        </div>
+
+        <header class="container">
+            <br>
+            <h1 class="underlined">Settings</h1><br>
+            <h2 class="underlined">Email Preferences</h2>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="newsletter">
+                <label class="form-check-label" for="newsletter">
+                <p style="font-size: medium;">Newsletter</p>
+                </label>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Save Preferences"><br><br><br>
+            <h2 class="underlined">Change Password</h2>
+            <form method="POST" style="max-width: 330px;">
+                <label for="passwordOld">Old Password</label>
+                <input type="password" class="form-control" id="passwordOld" placeholder="Old Password" required><br>
+                <label for="passwordNew">New Password</label>
+                <input type="password" class="form-control" id="passwordNew" placeholder="New Password" required><br>
+                <input type="submit" class="btn btn-primary" value="Save Password">
+            </form>
+        </header>
+    </body>
+</html>

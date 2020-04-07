@@ -7,3 +7,11 @@ nav {
 body {
     background-color: #eee;
 }
+
+.underlined {
+    padding-bottom: 10px;
+    border-bottom: 1px solid pink;
+    line-height: 48px;
+  }
+  
+
