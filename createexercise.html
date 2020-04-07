@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <title>My Exercises</title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <nav class="navbar navbar-light bg-light">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand"><img src="images/favicon-32x32.png" width=32 height=32 class="d-inline-block align-top" alt="">
+                        Fitness Planner
+                    </a>
+                </div>
+                <!-- <span class="navbar-right"> -->
+                    <!-- <a href="#" class="navbar-right"><button id="login" type="button">Login</button></a> -->
+                <!-- </span> -->
+                <form class="form-inline my-2 my-lg-0 nav navbar-right">
+                    <a class="btn btn-outline-success my-2 my-sm-0" href="login.html">Sign In</a>
+                </form>
+            </nav>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1>Create Exercise</h1>
+                </div>
+                <div class="col-lg-4">
+                    <button id="discard_exercise" type="button">Discard Exercise</button><br>
+                    <button id="save_exercise" type="button">Save & Exit</button><br>
+                    <button id="create_exercise" type="button">Finalize Exercise</button><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <p>
+                        Name Your Exercise:
+                    </p>
+                    <input type="text">
+                    <p>
+                        Add a Description:
+                    </p>
+                    <textarea rows="6" cols="50"></textarea>
+                    <p>Add a picture or video:</p>
+                    <button id="upload_media" type="button">Upload</button><br>
+                </div>
+                <div class="col-lg-4">
+                    <button id="add_set" type="button">Add a Set</button><br>
+                </div>
+                <div class="col-lg-4">
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
