@@ -80,6 +80,9 @@ Each user can edit their profile settings and email preferences on this page.
 #### Breakdown of Labor
 
 Aaron (internlol): dashboard/index, login page, about page, settings page, create calendar page, css file, wireframes, milestone1.md
+
 Arnold (arnold-j): dashboard/index, create workout, myworkouts, create routine, my routines, wireframes, milestone1.md
+
 Nadeem (nadeemfarhat): dashboard/index, wireframes, create exercise, myexercises, mycalendars, create routine, milestone1.md
+
 We all collaborated in coming up with the wireframe outlines and we also collaboratively coded over screenshare, so we were all involved in all parts of milestone 1.
