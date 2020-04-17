@@ -1,0 +1,27 @@
+{
+  "name": "cs326-final-gamma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "@types/node": "^13.11.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Internlol/cs326-final-gamma.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Internlol/cs326-final-gamma/issues"
+  },
+  "homepage": "https://github.com/Internlol/cs326-final-gamma#readme"
+}
