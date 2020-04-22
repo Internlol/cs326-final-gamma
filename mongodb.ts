@@ -1,7 +1,7 @@
 export class Database {
 
 	private MongoClient = require('mongodb').MongoClient;
-	private uri = "mongodb+srv://guest:<password>@326-i4fra.mongodb.net/test?retryWrites=true&w=majority"
+	private uri = "";
     private client;
     private collectionName : string;
     private dbName : string = "test";
