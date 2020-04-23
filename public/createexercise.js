@@ -1,5 +1,6 @@
 //need set count variable to create unique id's
 //actually we can probably just iterate through the list object
+const url = "http://localhost:8080";
 let setArray = [];
 
 async function postData(url, data) {
@@ -24,13 +25,14 @@ function exerciseCreate() {
         if(name == "") { return; }
         let desc = document.getElementById("desc").value;
         const setData = JSON.stringify(setArray);
-        console.log(setData);
+        // console.log(setData);
         const data = { 'name' : name, 'desc' : desc, 'setData' : setData };
-        console.log(data);
-        const newURL = "/users/" + "exercises" + "/create";
+        // console.log(data);
+        const newURL = url + "/users" + "/exercises" + "/create";
         console.log("exerciseCreate: fetching " + newURL);
         const resp = await postData(newURL, data);
         const j = await resp.json();
+        console.log(j['name'] + " was " + j['result']);
         // if (j['result'] !== 'error') {
         //     document.getElementById("output").innerHTML = "101: <b>" + userName + ", " + counterName + " created.</b>";
         // } else {

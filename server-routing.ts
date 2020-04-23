@@ -31,10 +31,15 @@ export class MyServer {
 
         this.router.post('/register', this.registerHandler.bind(this));
         this.router.post('/login', this.loginHandler.bind(this));
-        this.router.post('/users/:userId/exercises/create', this.createExerciseHandler.bind(this));
-        this.router.post('/users/:userId/exercises/read', this.readExerciseHandler.bind(this));
+        // create
+        this.router.post('/users/exercises/create', this.createExerciseHandler.bind(this));
+        // read
+        this.router.post('/users/exercises/read', this.readExerciseHandler.bind(this));
+        //
         this.router.post('/users/:userId/exercises/update', this.updateExerciseHandler.bind(this));
         this.router.post('/users/:userId/exercises/delete', this.deleteExerciseHandler.bind(this));
+
+        this.server.use('/', this.router);
     }
 
     public listen(port) : void  {
@@ -45,10 +50,9 @@ export class MyServer {
         // NAME
         // DESCRIPTION
         // LIST OF SETS (JSON)
-        await this.createExercise(request.body.name, request.body.desc, request.body.sets, response);
+        await this.createExercise(request.body.name, request.body.desc, request.body.setData, response);
     }
     private async readExerciseHandler(request, response) : Promise<void> {
-
         await this.readExercise(request.body.name, response);
     }
 
@@ -56,7 +60,7 @@ export class MyServer {
         // NAME
         // DESCRIPTION
         // LIST OF SETS (JSON)
-        await this.updateExercise(request.body.name, request.body.desc, request.body.sets, response);
+        await this.updateExercise(request.body.name, request.body.desc, request.body.setData, response);
     }
 
     private async deleteExerciseHandler(request, response) : Promise<void> {
@@ -66,14 +70,16 @@ export class MyServer {
 
     public async createExercise(name: string, desc: string, setlist: Array<Object>, response): Promise<void>{
         // await this.theDatabase.put();
-        // response.write();
-        // response.end();
+        response.write(JSON.stringify({'result' : 'created', 'name' : name}));
+        response.end();
     }
     
     public async readExercise(name: string, response): Promise<void> {
+        // dummy data
+        var arr = [{name: "pushups", desc: "some pushups", setData: "[{'repCount':'12','setLength':'','restTime':'30'}]"}, {name: "squats", desc: "some squats", setData: "[{'repCount':'12','setLength':'','restTime':'30'}]"}];
         // let value = await this.theDatabase.get(name);
-        // response.write();
-        // response.end();
+        response.write(JSON.stringify(arr));
+        response.end();
     }
 
     public async updateExercise(name: string, desc: string, setlist: Array<Object>, response): Promise<void>{
