@@ -61,6 +61,7 @@ function addSet() {
         const setObj = { 'repCount' : repCount, 'setLength' : setLength, 'restTime' : restTime };
         setArray.push(setObj);
         var node = document.createElement("LI");
+        node.setAttribute("class", "list-group-item");
         var textnode = document.createTextNode(setText);
         node.appendChild(textnode);
         document.getElementById("set_list").appendChild(node);
