@@ -16,6 +16,12 @@ async function postData(url, data) {
     return resp;
 }
 
+function deleteItem(id) {
+    var temp = document.getElementById("exercise_list");
+    temp.removeChild(document.getElementById(id));
+    // delete from database
+}
+
 // call read function
 (async () => {
     console.log("fetching all exercises from server");
@@ -23,15 +29,32 @@ async function postData(url, data) {
     const newURL = url + "/users" + "/exercises" + "/read";
     const resp = await postData(newURL, data);
     const j = await resp.json();
+    var lastid = 0;
     for(var i = 0; i < j.length; i++) {
         var node = document.createElement("LI");
+        var deleteButton = document.createElement("input");
+        deleteButton.setAttribute("type", "button");
+        deleteButton.setAttribute("value", "X");
+        deleteButton.setAttribute("style", "float:right");
+        deleteButton.setAttribute("class", "btn btn-danger")
         node.setAttribute("class", "list-group-item");
         var text = "";
         var temp = j[i];
         text += temp.name;
-        var textnode = document.createTextNode(text);
-        node.appendChild(textnode);
+        deleteButton.setAttribute('id',text);
+        deleteButton.setAttribute('onClick','deleteItem("'+text+'")');
+        node.setAttribute("id", text);
+        node.innerText = text;
+        node.appendChild(deleteButton);
         document.getElementById("exercise_list").appendChild(node);
+        lastid += 1;
     }
     console.log(j);
+    // $("ul").on("click", "input", function(e) {
+    //     e.preventDefault();
+    //     $(this).parent().remove();
+    // });
+    document.getElementById("delete").addEventListener("click", function(){
+        (this).closest("li").remove(); 
+     });
 })();
