@@ -1,5 +1,6 @@
 //need set count variable to create unique id's
 //actually we can probably just iterate through the list object
+let setArray = [];
 
 async function postData(url, data) {
     const resp = await fetch(url,
@@ -20,17 +21,21 @@ async function postData(url, data) {
 function exerciseCreate() {
     (async () => {
         let name = document.getElementById("name").value;
+        if(name == "") { return; }
         let desc = document.getElementById("desc").value;
-        const data = { 'name' : name, 'desc' : desc };
+        const setData = JSON.stringify(setArray);
+        console.log(setData);
+        const data = { 'name' : name, 'desc' : desc, 'setData' : setData };
+        console.log(data);
         const newURL = "/users/" + "exercises" + "/create";
         console.log("exerciseCreate: fetching " + newURL);
         const resp = await postData(newURL, data);
         const j = await resp.json();
-        if (j['result'] !== 'error') {
-            document.getElementById("output").innerHTML = "101: <b>" + userName + ", " + counterName + " created.</b>";
-        } else {
-            document.getElementById("output").innerHTML = "100: " + userName + ", " + counterName + " not found.</b>";
-        }
+        // if (j['result'] !== 'error') {
+        //     document.getElementById("output").innerHTML = "101: <b>" + userName + ", " + counterName + " created.</b>";
+        // } else {
+        //     document.getElementById("output").innerHTML = "100: " + userName + ", " + counterName + " not found.</b>";
+        // }
         })();
 }
 
@@ -51,7 +56,10 @@ function addSet() {
         restTimeText = "Rest Time: " + restTime + " ";
     }
     var setText = repCountText + setLengthText + restTimeText;
+    // creating new set
     if(setText != "" && document.getElementById("set_list").childElementCount < 10) {
+        const setObj = { 'repCount' : repCount, 'setLength' : setLength, 'restTime' : restTime };
+        setArray.push(setObj);
         var node = document.createElement("LI");
         var textnode = document.createTextNode(setText);
         node.appendChild(textnode);
@@ -61,10 +69,13 @@ function addSet() {
 
 function removeSet() {
     var setList = document.getElementById("set_list");
+    // remove last set
     if (setList.hasChildNodes()) {
+        setArray.pop();
         setList.removeChild(setList.lastChild);
     }
 }
 
 document.getElementById("add_set").addEventListener("click", addSet);
 document.getElementById("remove_set").addEventListener("click", removeSet);
+document.getElementById("create_exercise").addEventListener("click", exerciseCreate);
