@@ -1,3 +1,4 @@
+const url = "http://localhost:8080";
 
 async function postData(url, data) {
     const resp = await fetch(url,
@@ -41,3 +42,23 @@ function createWorkout() {
 
 
 document.getElementById("create_workout").addEventListener("click", createWorkout);
+
+(async () => {
+    console.log("fetching all exercises from server");
+    const data = {};
+    const newURL = url + "/users" + "/exercises" + "/read";
+    const resp = await postData(newURL, data);
+    const j = await resp.json();
+    for(var i = 0; i < j.length; i++) {
+        var outside = document.createElement("tr");
+        var inside = document.createElement("td");
+        // console.log(outside);
+        var text = "";
+        var temp = j[i];
+        text += temp.name;
+        inside.innerText = text;
+        outside.appendChild(inside);
+        document.getElementById("exercise_list").appendChild(outside);
+    }
+    console.log(j);
+})();
