@@ -51,7 +51,7 @@ function addSet() {
         restTimeText = "Rest Time: " + restTime + " ";
     }
     var setText = repCountText + setLengthText + restTimeText;
-    if(setText != "") {
+    if(setText != "" && document.getElementById("set_list").childElementCount < 10) {
         var node = document.createElement("LI");
         var textnode = document.createTextNode(setText);
         node.appendChild(textnode);
