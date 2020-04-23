@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css">
+        <script src="createexercise.js" defer></script>
         <title>Create Exercise</title>
     </head>
     <body>
@@ -34,26 +35,25 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-4">
-                    <p>
-                        Name Your Exercise:
-                    </p>
-                    <input type="text">
-                    <p>
-                        Add a Description:
-                    </p>
-                    <textarea rows="6"></textarea>
+                    <label for="name">Name Your Exercise:</label><br>
+                    <input type="text" id="name"><br><br>
+                    <label for="desc">Add a Description:</label><br>
+                    <textarea rows="6" id="desc"></textarea><br>
                     <p>Add a picture or video:</p>
                     <button id="upload_media" type="button">Upload</button><br>
                 </div>
                 <div class="col-lg-4 col-md-4">
-                    <p>How many reps for this set?</p>
-                    <input type="text">
-                    <p>How long does this set last?</p>
-                    <input type="text">
-                    <p>How much rest time after this set?</p>
-                    <input type="text"><br>
+                    <label for="repCount">How many reps for this set?</label><br>
+                    <input type="text" id="repCount"><br><br>
+                    <label for="setLength">How long does this set last?</label><br>
+                    <input type="text" id="setLength"><br><br>
+                    <label for="restTime">How much rest time after this set?</label><br>
+                    <input type="text" id="restTime"><br><br>
                     <button id="add_set" type="button">Add a Set</button><br>
-                    <table class="table table-hover">
+                    <button id="remove_set" type="button">Remove Last Set</button><br><br>
+                    <p>List of Sets:</p>
+                    <ul id="set_list"></ul>
+                    <!-- <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>
@@ -73,7 +73,7 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
                 </div>
                 <div class="col-lg-4 col-md-4">
 
