@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css">
+        <script src="myexercises.js" defer></script>
         <title>My Exercises</title>
     </head>
     <body>
@@ -27,7 +28,10 @@
                 <div class="col-lg-8">
                     <h1>My Exercises</h1>
                     <p>Below is a list of your exercises.</p>
-                    <table class="table table-hover">
+                    <ul class="list-group" id="exercise_list">
+
+                    </ul>
+                    <!-- <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>
@@ -80,7 +84,7 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
                 </div>
                 <div class="col-lg-4">
                     <a href="createexercise.html"><button id="create_exercise" type="button">Create Exercise</button></a>
