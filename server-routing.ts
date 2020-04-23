@@ -23,7 +23,7 @@ export class MyServer {
             response.header('Access-Control-Allow-Headers', '*');
             next();
         });
-	    this.server.use('/', express.static('./html'));
+	    this.server.use('/', express.static('./public'));
         this.server.use(express.json());
 
         // let users = [];
@@ -31,12 +31,62 @@ export class MyServer {
 
         this.router.post('/register', this.registerHandler.bind(this));
         this.router.post('/login', this.loginHandler.bind(this));
+        this.router.post('/users/:userId/exercises/create', this.createExerciseHandler.bind(this));
+        this.router.post('/users/:userId/exercises/read', this.readExerciseHandler.bind(this));
+        this.router.post('/users/:userId/exercises/update', this.updateExerciseHandler.bind(this));
+        this.router.post('/users/:userId/exercises/delete', this.deleteExerciseHandler.bind(this));
     }
 
     public listen(port) : void  {
         this.server.listen(port);
     }
 
+    private async createExerciseHandler(request, response) : Promise<void> {
+        // NAME
+        // DESCRIPTION
+        // LIST OF SETS (JSON)
+        await this.createExercise(request.body.name, request.body.desc, request.body.sets, response);
+    }
+    private async readExerciseHandler(request, response) : Promise<void> {
+
+        await this.readExercise(request.body.name, response);
+    }
+
+    private async updateExerciseHandler(request, response) : Promise<void> {
+        // NAME
+        // DESCRIPTION
+        // LIST OF SETS (JSON)
+        await this.updateExercise(request.body.name, request.body.desc, request.body.sets, response);
+    }
+
+    private async deleteExerciseHandler(request, response) : Promise<void> {
+
+        await this.deleteExercise(request.body.name, response);
+    }
+
+    public async createExercise(name: string, desc: string, setlist: Array<Object>, response): Promise<void>{
+        // await this.theDatabase.put();
+        // response.write();
+        // response.end();
+    }
+    
+    public async readExercise(name: string, response): Promise<void> {
+        // let value = await this.theDatabase.get(name);
+        // response.write();
+        // response.end();
+    }
+
+    public async updateExercise(name: string, desc: string, setlist: Array<Object>, response): Promise<void>{
+        // await this.theDatabase.put();
+        // response.write();
+        // response.end();
+    }
+
+    public async deleteExercise(name: string, response): Promise<void> {
+        // await this.theDatabase.del(name);
+        // response.write();
+        // response.end();
+    }
 
 
     private async registerHandler(request, response) : Promise<void> {
