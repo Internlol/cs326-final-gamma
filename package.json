@@ -2,7 +2,7 @@
   "name": "cs326-final-gamma",
   "version": "1.0.0",
   "description": "",
-  "main": "main.ts",
+  "main": "server.ts",
   "directories": {
     "doc": "docs"
   },
