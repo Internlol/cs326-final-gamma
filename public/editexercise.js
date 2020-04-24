@@ -28,7 +28,7 @@ function exerciseCreate() {
         // console.log(setData);
         const data = { 'name' : name, 'desc' : desc, 'setData' : setData };
         // console.log(data);
-        const newURL = url + "/users" + "/exercises" + "/create";
+        const newURL = url + "/users" + "/exercises" + "/update";
         console.log("exerciseCreate: fetching " + newURL);
         const resp = await postData(newURL, data);
         const j = await resp.json();
@@ -85,17 +85,57 @@ document.getElementById("create_exercise").addEventListener("click", exerciseCre
 
 // call read function
 (async () => {
-    console.log("fetching all exercises from server");
-    const data = {};
-    const newURL = url + "/users" + "/exercises" + "/update";
+    console.log("fetching one exercise from server");
+    const data = {name : "pushups"};
+    const newURL = url + "/users" + "/exercises" + "/readOne";
     const resp = await postData(newURL, data);
     const j = await resp.json();
     console.log(j);
-    for(var i = 0; i < j.length; i++) {
+    document.getElementById("name").value = j.name;
+    document.getElementById("desc").innerText = j.desc;
+    setArray = j.setData;
+    for(var i = 0; i < setArray.length; i++) {
+        // var tempRepCount = setArray[i].repCount;
+        // var tempSetLength = setArray[i].setLength;
+        // var tempRestTime = setArray[i].restTime;
+        let repCountText = "";
+        let setLengthText = "";
+        let restTimeText = "";
+
+        if(setArray[i].repCount != "") {
+            repCountText = "Reps: " + setArray[i].repCount + " ";
+        }
+        if(setArray[i].setLength != "") {
+            setLengthText = "Set Length: " + setArray[i].setLength + " ";
+        }
+        if(setArray[i].restTime != "") {
+            restTimeText = "Rest Time: " + setArray[i].restTime + " ";
+        }
+        var setText = repCountText + setLengthText + restTimeText;
+
+    
+
+
+
+
+
+    
+        var node = document.createElement("LI");
         node.setAttribute("class", "list-group-item");
-        var text = "";
-        var temp = j[i];
-        text += temp.name;
+        var textnode = document.createTextNode(setText);
+        node.appendChild(textnode);
+        document.getElementById("set_list").appendChild(node);
     }
-    console.log(j);
+
+
+
+
+    // console.log(j);
+    // for(var i = 0; i < j.length; i++) {
+    //     node.setAttribute("class", "list-group-item");
+    //     var text = "";
+    //     var temp = j[i];
+    //     text += temp.name;
+    // }
+    // console.log(j);
 })();

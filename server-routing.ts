@@ -13,7 +13,7 @@ export class MyServer {
     private server = express();
     private port = 8080;
     private router = express.Router();
-    private arr = [{name: "pushups", desc: "some pushups", setData: "[{'repCount':'12','setLength':'','restTime':'30'}]"}, {name: "squats", desc: "some squats", setData: "[{'repCount':'12','setLength':'','restTime':'30'}]"}];
+    private arr = [{name: "pushups", desc: "some pushups", setData: [{'repCount':'12','setLength':'','restTime':'30'}]}, {name: "squats", desc: "some squats", setData: [{'repCount':'12','setLength':'','restTime':'30'}]}];
 
 
     constructor(db) {
@@ -36,10 +36,14 @@ export class MyServer {
         // create
         this.router.post('/users/exercises/create', this.createExerciseHandler.bind(this));
         // read
-        this.router.post('/users/exercises/read', this.readExerciseHandler.bind(this));
+        this.router.post('/users/exercises/readOne', this.readOneExerciseHandler.bind(this));
+        // read all
+        this.router.post('/users/exercises/readAll', this.readAllExercisesHandler.bind(this));
         //
         this.router.post('/users/exercises/update', this.updateExerciseHandler.bind(this));
         this.router.post('/users/exercises/delete', this.deleteExerciseHandler.bind(this));
+        // edit
+        this.router.post('/users/exercises/edit', this.editExerciseHandler.bind(this));
 
         this.server.use('/', this.router);
     }
@@ -54,8 +58,11 @@ export class MyServer {
         // LIST OF SETS (JSON)
         await this.createExercise(request.body.name, request.body.desc, request.body.setData, response);
     }
-    private async readExerciseHandler(request, response) : Promise<void> {
-        await this.readExercise(request.body.name, response);
+    private async readOneExerciseHandler(request, response) : Promise<void> {
+        await this.readOneExercise(request.body.name, response);
+    }
+    private async readAllExercisesHandler(request, response) : Promise<void> {
+        await this.readAllExercises(request.body.name, response);
     }
 
     private async updateExerciseHandler(request, response) : Promise<void> {
@@ -70,25 +77,43 @@ export class MyServer {
         await this.deleteExercise(request.body.name, response);
     }
 
-    public async createExercise(name: string, desc: string, setData: Array<Object>, response): Promise<void>{
+    private async editExerciseHandler(request, response) : Promise<void> {
+        await this.editExercise(request.body.name, response);
+    }
+
+    public async createExercise(name: string, desc: string, setData: Array<any>, response): Promise<void>{
         // await this.theDatabase.put();
-        this.arr.push({name: name, desc: desc, setData: JSON.stringify(setData)});
+        this.arr.push({name: name, desc: desc, setData: setData});
         response.write(JSON.stringify({'result' : 'created', 'name' : name}));
         response.end();
     }
     
-    public async readExercise(name: string, response): Promise<void> {
+    public async readOneExercise(name: string, response): Promise<void> {
+        // dummy data
+        // let value = await this.theDatabase.get(name);
+        var temp = {};
+        for(var i = 0; i < this.arr.length; i++){
+            if(this.arr[i].name == name){
+                temp = this.arr[i];
+                break;
+            }
+        }
+        response.write(JSON.stringify(temp));
+        response.end();
+    }
+
+    public async readAllExercises(name: string, response): Promise<void> {
         // dummy data
         // let value = await this.theDatabase.get(name);
         response.write(JSON.stringify(this.arr));
         response.end();
     }
 
-    public async updateExercise(name: string, desc: string, setData: Array<Object>, response): Promise<void>{
+    public async updateExercise(name: string, desc: string, setData: Array<any>, response): Promise<void>{
         // currExercise =
         for(var i = 0; i < this.arr.length; i++){
             if(this.arr[i].name == name){
-                this.arr[i] = ({name: name, desc: desc, setData: JSON.stringify(setData)});
+                this.arr[i] = ({name: name, desc: desc, setData: setData});
                 break;
             }
         }
@@ -106,6 +131,13 @@ export class MyServer {
         }
         this.arr = temp;
         response.write(JSON.stringify({'result' : 'deleted', 'name' : name}));
+        response.end();
+    }
+
+    public async editExercise(name: string, response): Promise<void> {
+        // dummy data
+        // let value = await this.theDatabase.get(name);
+        response.write(JSON.stringify(this.arr));
         response.end();
     }
 

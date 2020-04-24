@@ -45,11 +45,11 @@ function editItem(id) {
     })();
 }
 
-// call read function
+// call read all function
 (async () => {
     console.log("fetching all exercises from server");
     const data = {};
-    const newURL = url + "/users" + "/exercises" + "/read";
+    const newURL = url + "/users" + "/exercises" + "/readAll";
     const resp = await postData(newURL, data);
     const j = await resp.json();
     var lastid = 0;
