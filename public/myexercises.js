@@ -1,4 +1,5 @@
-const url = "http://localhost:8080";
+
+const url = "https://fast-tundra-84247.herokuapp.com/";
 
 async function postData(url, data) {
     const resp = await fetch(url,

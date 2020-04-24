@@ -1,6 +1,6 @@
 //need set count variable to create unique id's
 //actually we can probably just iterate through the list object
-const url = "http://localhost:8080";
+const url = "https://fast-tundra-84247.herokuapp.com/";
 let setArray = [];
 
 async function postData(url, data) {
