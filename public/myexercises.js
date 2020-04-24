@@ -17,9 +17,20 @@ async function postData(url, data) {
 }
 
 function deleteItem(id) {
+    // delete from database
+    (async () => {
+        let exercise = document.getElementById(id).id;
+        console.log(exercise);
+        const data = {'name': exercise};
+        const newURL = url + "/users/exercises/delete";
+        console.log("counterDelete: fetching " + newURL);
+        const resp = await postData(newURL, data);
+        const j = await resp.json();
+        console.log(j["name"]+" was "+j.result);	    
+        })();
+
     var temp = document.getElementById("exercise_list");
     temp.removeChild(document.getElementById(id));
-    // delete from database
 }
 
 // call read function
@@ -54,7 +65,4 @@ function deleteItem(id) {
     //     e.preventDefault();
     //     $(this).parent().remove();
     // });
-    document.getElementById("delete").addEventListener("click", function(){
-        (this).closest("li").remove(); 
-     });
 })();
