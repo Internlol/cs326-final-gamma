@@ -86,7 +86,7 @@ function editItem(id) {
         document.getElementById("exercise_list").appendChild(node);
         lastid += 1;
     }
-    console.log(j);
+    console.log("read all exercises from server");
     // $("ul").on("click", "input", function(e) {
     //     e.preventDefault();
     //     $(this).parent().remove();
