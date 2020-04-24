@@ -1,7 +1,7 @@
 export class Database {
 
 	private MongoClient = require('mongodb').MongoClient;
-	private uri = "";
+	private uri = process.env.uri;
     private client;
     private collectionName : string;
     private dbName : string = "test";
