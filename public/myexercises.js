@@ -36,12 +36,17 @@ function deleteItem(id) {
 function editItem(id) {
     (async () => {
         let exercise = document.getElementById(id).id;
-        const data = {'name': exercise};
-        const newURL = url + "/users/exercises/edit";
-        console.log("edit: fetching " + newURL);
-        const resp = await postData(newURL, data);
-        const j = await resp.json();
-        console.log(j["name"]+" was "+j.result);  
+        // const data = {'name': exercise};
+        // console.log(data);
+        localStorage.setItem("name", exercise);
+        // console.log(localStorage);
+        location.href = "editexercise.html";
+        // window.location.replace("editexercise.html");
+        // const newURL = url + "/users/exercises/edit";
+        // console.log("edit: fetching " + newURL);
+        // const resp = await postData(newURL, data);
+        // const j = await resp.json();
+        // console.log(j["name"]+" was "+j.result);  
     })();
 }
 

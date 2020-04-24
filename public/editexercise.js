@@ -86,7 +86,7 @@ document.getElementById("create_exercise").addEventListener("click", exerciseCre
 // call read function
 (async () => {
     console.log("fetching one exercise from server");
-    const data = {name : "pushups"};
+    const data = {name : localStorage.getItem("name")};
     const newURL = url + "/users" + "/exercises" + "/readOne";
     const resp = await postData(newURL, data);
     const j = await resp.json();
