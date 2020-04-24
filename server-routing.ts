@@ -84,10 +84,16 @@ export class MyServer {
         response.end();
     }
 
-    public async updateExercise(name: string, desc: string, setlist: Array<Object>, response): Promise<void>{
-        // await this.theDatabase.put();
-        // response.write();
-        // response.end();
+    public async updateExercise(name: string, desc: string, setData: Array<Object>, response): Promise<void>{
+        // currExercise =
+        for(var i = 0; i < this.arr.length; i++){
+            if(this.arr[i].name == name){
+                this.arr[i] = ({name: name, desc: desc, setData: JSON.stringify(setData)});
+                break;
+            }
+        }
+        response.write(JSON.stringify({'result' : 'updated', 'name' : name}));
+        response.end();
     }
 
     public async deleteExercise(name: string, response): Promise<void> {

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+        <script src="editexercise.js" defer></script>
+        <title>Create Exercise</title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <nav class="navbar navbar-light bg-light">
+                <div class="navbar-header">
+                    <a href="index.html" class="navbar-brand"><img src="images/favicon-32x32.png" width=32 height=32 class="d-inline-block align-top" alt="">
+                        Fitness Planner
+                    </a>
+                </div>
+                <!-- <span class="navbar-right"> -->
+                    <!-- <a href="#" class="navbar-right"><button id="login" type="button">Login</button></a> -->
+                <!-- </span> -->
+                <form class="form-inline my-2 my-lg-0 nav navbar-right">
+                    <a class="btn btn-outline-success my-2 my-sm-0" href="login.html">Sign In</a>
+                </form>
+            </nav>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <h1>Create Exercise</h1>
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-12 col-xs-12">
+                    <a href="myexercises.html"><button id="discard_exercise" type="button">Discard Exercise</button></a><br>
+                    <a><button id="create_exercise" type="button">Save and Add Exercise</button></a><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <label for="name">Name Your Exercise:</label><br>
+                    <input type="text" id="name"><br><br>
+                    <label for="desc">Add a Description:</label><br>
+                    <textarea rows="6" id="desc"></textarea><br><br>
+                    <!-- <label for="upload_media">Add a picture or video:</label>
+                    <button id="upload_media" type="button">Upload</button><br> -->
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <label for="repCount">How many reps for this set?</label><br>
+                    <input type="text" id="repCount"><br><br>
+                    <label for="setLength">How long does this set last?</label><br>
+                    <input type="text" id="setLength"><br><br>
+                    <label for="restTime">How much rest time after this set?</label><br>
+                    <input type="text" id="restTime"><br><br>
+                    <button id="add_set" type="button">Add a Set</button><br>
+                    <button id="remove_set" type="button">Remove Last Set</button><br><br>
+                    <p>Sets:</p>
+                    <ul id="set_list" class="list-group"></ul>
+                    <!-- <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Set
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Set 1 Reps: 12 Rest: 30s
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Set 2 Reps: 12 Rest: 30s
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+                </div>
+                <div class="col-lg-4 col-md-4">
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

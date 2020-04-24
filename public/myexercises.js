@@ -33,6 +33,18 @@ function deleteItem(id) {
     temp.removeChild(document.getElementById(id));
 }
 
+function editItem(id) {
+    (async () => {
+        let exercise = document.getElementById(id).id;
+        const data = {'name': exercise};
+        const newURL = url + "/users/exercises/edit";
+        console.log("edit: fetching " + newURL);
+        const resp = await postData(newURL, data);
+        const j = await resp.json();
+        console.log(j["name"]+" was "+j.result);  
+    })();
+}
+
 // call read function
 (async () => {
     console.log("fetching all exercises from server");
@@ -48,15 +60,23 @@ function deleteItem(id) {
         deleteButton.setAttribute("value", "X");
         deleteButton.setAttribute("style", "float:right");
         deleteButton.setAttribute("class", "btn btn-danger")
+        var editButton = document.createElement("input");
+        editButton.setAttribute("type", "button");
+        editButton.setAttribute("value", "Edit");
+        editButton.setAttribute("style", "float:right");
+        editButton.setAttribute("class", "btn btn-light")
         node.setAttribute("class", "list-group-item");
         var text = "";
         var temp = j[i];
         text += temp.name;
         deleteButton.setAttribute('id',text);
         deleteButton.setAttribute('onClick','deleteItem("'+text+'")');
+        editButton.setAttribute('id',text);
+        editButton.setAttribute('onClick','editItem("'+text+'")');
         node.setAttribute("id", text);
         node.innerText = text;
         node.appendChild(deleteButton);
+        node.appendChild(editButton);
         document.getElementById("exercise_list").appendChild(node);
         lastid += 1;
     }
