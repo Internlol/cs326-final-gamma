@@ -24,7 +24,7 @@ function exerciseCreate() {
         let name = document.getElementById("name").value;
         if(name == "") { return; }
         let desc = document.getElementById("desc").value;
-        const setData = JSON.stringify(setArray);
+        const setData = setArray;
         // console.log(setData);
         const data = { 'name' : name, 'desc' : desc, 'setData' : setData };
         // console.log(data);
