@@ -124,3 +124,7 @@ Server responds with JSON signalling the specified exercise was deleted.
 
 Deleting the exercise on the front end:
 ![delete exercise 1](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/milestone2delete.png)
+
+### Contributions
+#### Nadeem Farhat:
+- createexercise.html, createexercise.js, myexercises.js, editexercise.html, editexercise.js, milestone2.md
