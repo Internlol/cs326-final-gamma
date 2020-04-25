@@ -127,7 +127,10 @@ Deleting the exercise on the front end:
 
 ### Contributions
 #### Nadeem Farhat:
-- createexercise.html, createexercise.js, myexercises.js, editexercise.html, editexercise.js, server-routing.ts, milestone2.md
+- createexercise.html, createexercise.js, myexercises.js, editexercise.html, editexercise.js, server-routing.ts
 
 #### Arnold Joseph:
-- createexercise.js, myexercises.js, server-routing.ts
+- createexercise.js, myexercises.js, server-routing.ts, tsc (ts --> js) compilation
+
+#### Aaron Quang:
+- Heroku deployment, createworkout,js, server routing/server/mongodb, Edit and Delete functions for viewworkout (editworkout.js, deleteworkout.js), bugfixes for JSON response body
