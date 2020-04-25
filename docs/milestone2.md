@@ -76,7 +76,7 @@ To update an exercise users must select a specific exercise from the list of all
 
 #### Endpoint URI and parameters
 
-The URIs for read: 
+The URIs for update: 
 
 https://fast-tundra-84247.herokuapp.com/users/exercises/update
 
@@ -97,3 +97,30 @@ Editing the exercise on the front end:
 
 Result of updating or editing the exercise:
 ![update exercise 1](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/milestone2update2.png)
+
+### Delete Exercise
+
+#### Overview
+
+To access our delete functionality visit: https://fast-tundra-84247.herokuapp.com/myexercises.html and hit the "X" button on the cell containing the exercise you would like to delete.
+
+#### Endpoint URI and parameters
+
+The URI for delete: 
+
+https://fast-tundra-84247.herokuapp.com/users/exercises/delete
+
+This endpoint will make a POST request to the server.
+
+| Parameter/Request Body| Description| Example|
+|-------------------|------------|--------|
+| name | Name of the exercise for .../delete | {name: "pushups"}|
+
+#### Response
+
+Server responds with JSON signalling the specified exercise was deleted.
+
+#### Images (for Part 2)
+
+Deleting the exercise on the front end:
+![delete exercise 1](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/milestone2delete.png)
