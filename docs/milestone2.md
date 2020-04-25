@@ -127,4 +127,7 @@ Deleting the exercise on the front end:
 
 ### Contributions
 #### Nadeem Farhat:
-- createexercise.html, createexercise.js, myexercises.js, editexercise.html, editexercise.js, milestone2.md
+- createexercise.html, createexercise.js, myexercises.js, editexercise.html, editexercise.js, server-routing.ts, milestone2.md
+
+#### Arnold Joseph:
+- createexercise.js, myexercises.js, server-routing.ts
