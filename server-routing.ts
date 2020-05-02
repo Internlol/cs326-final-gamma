@@ -124,7 +124,7 @@ export class MyServer {
 
     public async deleteExercise(name: string, response): Promise<void> {
         // await this.theDatabase.del(name);
-        var temp = [];
+        var temp: any = [];
         for(var i = 0; i < this.arr.length; i++){
             if(this.arr[i].name != name){
                 temp.push(this.arr[i]);

@@ -9,7 +9,7 @@ export class Database {
 
     constructor() {
 		if (!process.env.uri) {
-			this.secrets = require('secrets.json');
+			this.secrets = require('./secrets.json');
 			this.uri = this.secrets.uri;
 		} 
 		else {
