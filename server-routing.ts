@@ -90,15 +90,10 @@ export class MyServer {
     
     public async readOneExercise(name: string, response): Promise<void> {
         // dummy data
+        console.log("read one");
         let value = await this.theDatabase.getExercise(name);
-        // var temp = {};
-        // for(var i = 0; i < this.arr.length; i++){
-        //     if(this.arr[i].name == name){
-        //         temp = this.arr[i];
-        //         break;
-        //     }
-        // }
-        response.write(JSON.stringify({'result' : 'read one', 'name' : name, 'value' : value }));
+        console.log("read one2");
+        response.write(JSON.stringify(value));
         response.end();
     }
 
