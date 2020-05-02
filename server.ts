@@ -3,7 +3,8 @@
 import { Database } from './mongodb';
 import { MyServer } from './server-routing';
 
-const theDatabase = new Database('test'); // CHANGE THIS
+const theDatabase = new Database(); // CHANGE THIS
 const theServer = new MyServer(theDatabase);
 
-theServer.listen(process.env.PORT);
+var port = process.env.PORT || 8080;
+theServer.listen(port);

@@ -83,7 +83,8 @@ export class MyServer {
 
     public async createExercise(name: string, desc: string, setData: Array<any>, response): Promise<void>{
         // await this.theDatabase.put();
-        this.arr.push({name: name, desc: desc, setData: setData});
+        // this.arr.push({name: name, desc: desc, setData: setData});
+        this.theDatabase.putExercise(name, desc, setData);
         response.write(JSON.stringify({'result' : 'created', 'name' : name}));
         response.end();
     }
