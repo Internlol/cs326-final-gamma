@@ -11,7 +11,6 @@ export class MyServer {
 
     // Server stuff: use express instead of http.createServer
     private server = express();
-    private port = 8080;
     private router = express.Router();
     private arr = [{name: "pushups", desc: "some pushups", setData: [{'repCount':'12','setLength':'','restTime':'30'}]}, {name: "squats", desc: "some squats", setData: [{'repCount':'12','setLength':'','restTime':'30'}]}];
 
@@ -84,7 +83,7 @@ export class MyServer {
     public async createExercise(name: string, desc: string, setData: Array<any>, response): Promise<void>{
         // await this.theDatabase.put();
         // this.arr.push({name: name, desc: desc, setData: setData});
-        this.theDatabase.putExercise(name, desc, setData);
+        await this.theDatabase.putExercise(name, desc, setData);
         response.write(JSON.stringify({'result' : 'created', 'name' : name}));
         response.end();
     }
