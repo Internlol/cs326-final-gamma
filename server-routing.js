@@ -17,9 +17,7 @@ class MyServer {
     constructor(db) {
         // Server stuff: use express instead of http.createServer
         this.server = express();
-        this.port = 8080;
         this.router = express.Router();
-        this.arr = [{ name: "pushups", desc: "some pushups", setData: [{ 'repCount': '12', 'setLength': '', 'restTime': '30' }] }, { name: "squats", desc: "some squats", setData: [{ 'repCount': '12', 'setLength': '', 'restTime': '30' }] }];
         this.theDatabase = db;
         // from https://enable-cors.org/server_expressjs.html
         this.router.use((request, response, next) => {
@@ -43,8 +41,6 @@ class MyServer {
         //
         this.router.post('/users/exercises/update', this.updateExerciseHandler.bind(this));
         this.router.post('/users/exercises/delete', this.deleteExerciseHandler.bind(this));
-        // edit
-        this.router.post('/users/exercises/edit', this.editExerciseHandler.bind(this));
         this.server.use('/', this.router);
     }
     listen(port) {
@@ -81,74 +77,38 @@ class MyServer {
             yield this.deleteExercise(request.body.name, response);
         });
     }
-    editExerciseHandler(request, response) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield this.editExercise(request.body.name, response);
-        });
-    }
     createExercise(name, desc, setData, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            // await this.theDatabase.put();
-            this.arr.push({ name: name, desc: desc, setData: setData });
+            yield this.theDatabase.putExercise(name, desc, setData);
             response.write(JSON.stringify({ 'result': 'created', 'name': name }));
             response.end();
         });
     }
     readOneExercise(name, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            // dummy data
-            // let value = await this.theDatabase.get(name);
-            var temp = {};
-            for (var i = 0; i < this.arr.length; i++) {
-                if (this.arr[i].name == name) {
-                    temp = this.arr[i];
-                    break;
-                }
-            }
-            response.write(JSON.stringify(temp));
+            let value = yield this.theDatabase.getExercise(name);
+            response.write(JSON.stringify(value));
             response.end();
         });
     }
     readAllExercises(name, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            // dummy data
-            // let value = await this.theDatabase.get(name);
-            response.write(JSON.stringify(this.arr));
+            let value = yield this.theDatabase.getAllExercise();
+            response.write(JSON.stringify(value));
             response.end();
         });
     }
     updateExercise(name, desc, setData, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            // currExercise =
-            for (var i = 0; i < this.arr.length; i++) {
-                if (this.arr[i].name == name) {
-                    this.arr[i] = ({ name: name, desc: desc, setData: setData });
-                    break;
-                }
-            }
+            yield this.theDatabase.putExercise(name, desc, setData);
             response.write(JSON.stringify({ 'result': 'updated', 'name': name }));
             response.end();
         });
     }
     deleteExercise(name, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            // await this.theDatabase.del(name);
-            var temp = [];
-            for (var i = 0; i < this.arr.length; i++) {
-                if (this.arr[i].name != name) {
-                    temp.push(this.arr[i]);
-                }
-            }
-            this.arr = temp;
+            yield this.theDatabase.deleteExercise(name);
             response.write(JSON.stringify({ 'result': 'deleted', 'name': name }));
-            response.end();
-        });
-    }
-    editExercise(name, response) {
-        return __awaiter(this, void 0, void 0, function* () {
-            // dummy data
-            // let value = await this.theDatabase.get(name);
-            response.write(JSON.stringify(this.arr));
             response.end();
         });
     }

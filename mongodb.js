@@ -10,11 +10,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 class Database {
-    constructor(collectionName) {
+    constructor() {
         this.MongoClient = require('mongodb').MongoClient;
-        this.uri = process.env.uri;
+        // private collectionName : string;
         this.dbName = "test";
-        this.collectionName = collectionName;
+        if (!process.env.uri) {
+            this.secrets = require('./secrets.json');
+            this.uri = this.secrets.uri;
+        }
+        else {
+            this.uri = process.env.uri;
+        }
+        // this.collectionName = collectionName;
         this.client = new this.MongoClient(this.uri, { useNewUrlParser: true });
         // Open up a connection to the client.
         // The connection is asynchronous, but we can't call await directly
@@ -37,26 +44,43 @@ class Database {
             yield this.client.connect().catch(err => { console.log(err); });
         }))();
     }
-    put(key, value) {
+    putExercise(name, desc, setData) {
         return __awaiter(this, void 0, void 0, function* () {
             let db = this.client.db(this.dbName);
-            let collection = db.collection(this.collectionName);
-            console.log("put: key = " + key + ", value = " + value);
-            let result = yield collection.updateOne({ 'name': key }, { $set: { 'value': value } }, { 'upsert': true });
-            console.log("result = " + result);
+            let collection = db.collection("exercises");
+            let result = yield collection.updateOne({ 'name': name }, { $set: { 'desc': desc, 'setData': setData } }, { 'upsert': true });
         });
     }
-    get(key) {
+    getExercise(name) {
         return __awaiter(this, void 0, void 0, function* () {
-            let db = this.client.db(this.dbName); // this.level(this.dbFile);
-            let collection = db.collection(this.collectionName);
-            let result = yield collection.findOne({ 'email': key });
+            let db = this.client.db(this.dbName);
+            let collection = db.collection("exercises");
+            let result = yield collection.findOne({ 'name': name });
             if (result) {
-                return result.value;
+                return result;
             }
-            else {
-                return null;
+            return null;
+        });
+    }
+    getAllExercise() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let db = this.client.db(this.dbName);
+            let collection = db.collection("exercises");
+            var result = yield collection.find({});
+            let readArr = [];
+            while (yield result.hasNext()) {
+                const doc = yield result.next();
+                readArr.push(doc);
             }
+            return readArr;
+        });
+    }
+    deleteExercise(name) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let db = this.client.db(this.dbName);
+            let collection = db.collection("exercises");
+            var result = yield collection.deleteOne({ 'name': name });
+            console.log(result);
         });
     }
 }
