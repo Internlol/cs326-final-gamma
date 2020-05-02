@@ -10,6 +10,7 @@ For our app we will have a collection for each of the data types for a user (exe
 We have a collection called "exercises" dedicated to exercise data.
 
 Exercise Document Structure:
+
 {
   
   _id: <ObjectId1>,
@@ -33,4 +34,16 @@ an example of one possible exercise document:
   "desc":"push yourself off the ground",
   
   "setData":[{"repCount":"12","setLength":"","restTime":"30 seconds"},{"repCount":"12","setLength":"","restTime":"30 seconds"},{"repCount":"12","setLength":"","restTime":"30 seconds"}]
+
 }
+
+
+###  Breakdown of Labor:
+
+Arnold: implemented createExercise in mongodb.ts
+
+Nadeem: implemented deleteExercise in mongodb.ts
+
+Aaron: implemented getExercise, getAllExercise in mongodb.ts
+
+Update exercise is lumped in with create.
