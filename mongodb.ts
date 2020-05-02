@@ -48,4 +48,28 @@ export class Database {
 		console.log("result = "+ result);
 	}
 
+	public async getExercise(name: string) : Promise<string> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection("exercises");
+		let result = await collection.findOne({'name' : name});
+		if (result) {
+			return result.value;
+		}
+		return null;
+	}
+
+	public async getAllExercise() : Promise<Array<any>> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection("exercises");
+		var result = await collection.find({});
+		let readArr = [];
+		while(await result.hasNext()) {
+			const doc = await result.next();
+			readArr.push(doc);
+		  }
+		console.log("readArr");
+		console.log(readArr);
+		return readArr;
+	}
+
 }

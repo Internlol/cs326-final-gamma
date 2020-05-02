@@ -8,7 +8,7 @@
         "noImplicitThis": true,
         "noUnusedParameters": false,
         "noFallthroughCasesInSwitch": true,
-        "strictNullChecks": true, // good idea not to disable
+        "strictNullChecks": false, // good idea not to disable
         "pretty": true,
         "module": "commonjs",
     },

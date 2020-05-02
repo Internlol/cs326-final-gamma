@@ -90,33 +90,33 @@ export class MyServer {
     
     public async readOneExercise(name: string, response): Promise<void> {
         // dummy data
-        // let value = await this.theDatabase.get(name);
-        var temp = {};
-        for(var i = 0; i < this.arr.length; i++){
-            if(this.arr[i].name == name){
-                temp = this.arr[i];
-                break;
-            }
-        }
-        response.write(JSON.stringify(temp));
+        let value = await this.theDatabase.getExercise(name);
+        // var temp = {};
+        // for(var i = 0; i < this.arr.length; i++){
+        //     if(this.arr[i].name == name){
+        //         temp = this.arr[i];
+        //         break;
+        //     }
+        // }
+        response.write(JSON.stringify({'result' : 'read one', 'name' : name, 'value' : value }));
         response.end();
     }
 
     public async readAllExercises(name: string, response): Promise<void> {
-        // dummy data
-        // let value = await this.theDatabase.get(name);
-        response.write(JSON.stringify(this.arr));
+        let value = await this.theDatabase.getAllExercise();
+        response.write(JSON.stringify(value));
         response.end();
     }
 
     public async updateExercise(name: string, desc: string, setData: Array<any>, response): Promise<void>{
         // currExercise =
-        for(var i = 0; i < this.arr.length; i++){
-            if(this.arr[i].name == name){
-                this.arr[i] = ({name: name, desc: desc, setData: setData});
-                break;
-            }
-        }
+        // for(var i = 0; i < this.arr.length; i++){
+        //     if(this.arr[i].name == name){
+        //         this.arr[i] = ({name: name, desc: desc, setData: setData});
+        //         break;
+        //     }
+        // }
+        await this.theDatabase.putExercise(name, desc, setData);
         response.write(JSON.stringify({'result' : 'updated', 'name' : name}));
         response.end();
     }
