@@ -43,18 +43,13 @@ export class Database {
 	public async putExercise(name: string, desc: string, setData: Array<any>){
 		let db = this.client.db(this.dbName);
 		let collection = db.collection("exercises");
-		console.log("put exercise "+name);
 		let result = await collection.updateOne({'name': name}, { $set : { 'desc':desc, 'setData': setData}}, {'upsert': true});
-		console.log("result = "+ result);
 	}
 
 	public async getExercise(name: string) : Promise<string> {
-		console.log(name);
 		let db = this.client.db(this.dbName);
 		let collection = db.collection("exercises");
 		let result = await collection.findOne({'name' : name});
-		console.log("result: ");
-		console.log(result);
 		if (result) {
 			return result;
 		}
@@ -70,9 +65,14 @@ export class Database {
 			const doc = await result.next();
 			readArr.push(doc);
 		  }
-		// console.log("readArr");
-		// console.log(readArr);
 		return readArr;
+	}
+
+	public async deleteExercise(name: string) : Promise<void> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection("exercises");
+		var result = await collection.deleteOne({'name': name});
+		console.log(result);
 	}
 
 }

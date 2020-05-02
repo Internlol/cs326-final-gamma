@@ -12,8 +12,6 @@ export class MyServer {
     // Server stuff: use express instead of http.createServer
     private server = express();
     private router = express.Router();
-    private arr = [{name: "pushups", desc: "some pushups", setData: [{'repCount':'12','setLength':'','restTime':'30'}]}, {name: "squats", desc: "some squats", setData: [{'repCount':'12','setLength':'','restTime':'30'}]}];
-
 
     constructor(db) {
         this.theDatabase = db;
@@ -41,8 +39,6 @@ export class MyServer {
         //
         this.router.post('/users/exercises/update', this.updateExerciseHandler.bind(this));
         this.router.post('/users/exercises/delete', this.deleteExerciseHandler.bind(this));
-        // edit
-        this.router.post('/users/exercises/edit', this.editExerciseHandler.bind(this));
 
         this.server.use('/', this.router);
     }
@@ -72,27 +68,17 @@ export class MyServer {
     }
 
     private async deleteExerciseHandler(request, response) : Promise<void> {
-
         await this.deleteExercise(request.body.name, response);
     }
 
-    private async editExerciseHandler(request, response) : Promise<void> {
-        await this.editExercise(request.body.name, response);
-    }
-
     public async createExercise(name: string, desc: string, setData: Array<any>, response): Promise<void>{
-        // await this.theDatabase.put();
-        // this.arr.push({name: name, desc: desc, setData: setData});
         await this.theDatabase.putExercise(name, desc, setData);
         response.write(JSON.stringify({'result' : 'created', 'name' : name}));
         response.end();
     }
     
     public async readOneExercise(name: string, response): Promise<void> {
-        // dummy data
-        console.log("read one");
         let value = await this.theDatabase.getExercise(name);
-        console.log("read one2");
         response.write(JSON.stringify(value));
         response.end();
     }
@@ -104,38 +90,16 @@ export class MyServer {
     }
 
     public async updateExercise(name: string, desc: string, setData: Array<any>, response): Promise<void>{
-        // currExercise =
-        // for(var i = 0; i < this.arr.length; i++){
-        //     if(this.arr[i].name == name){
-        //         this.arr[i] = ({name: name, desc: desc, setData: setData});
-        //         break;
-        //     }
-        // }
         await this.theDatabase.putExercise(name, desc, setData);
         response.write(JSON.stringify({'result' : 'updated', 'name' : name}));
         response.end();
     }
 
     public async deleteExercise(name: string, response): Promise<void> {
-        // await this.theDatabase.del(name);
-        var temp: any = [];
-        for(var i = 0; i < this.arr.length; i++){
-            if(this.arr[i].name != name){
-                temp.push(this.arr[i]);
-            }
-        }
-        this.arr = temp;
+        await this.theDatabase.deleteExercise(name);
         response.write(JSON.stringify({'result' : 'deleted', 'name' : name}));
         response.end();
     }
-
-    public async editExercise(name: string, response): Promise<void> {
-        // dummy data
-        // let value = await this.theDatabase.get(name);
-        response.write(JSON.stringify(this.arr));
-        response.end();
-    }
-
 
     private async registerHandler(request, response) : Promise<void> {
         try {
