@@ -8,6 +8,27 @@
         <title>My Exercises</title>
     </head>
     <body>
+        <!-- Trigger/Open The Modal
+        <button id="myBtn">Open Modal</button> -->
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>
+                <table style="width: 100%;" id="modalText">
+                    <tr>
+                        <th>Exercise Name</th>
+                        <th>Description</th>
+                        <th>Sets</th>
+                    </tr>
+                </table>
+            </p>
+        </div>
+
+        </div>
         <div class="container-fluid">
             <nav class="navbar navbar-light bg-light">
                 <div class="navbar-header">
@@ -33,9 +54,25 @@
                     </ul>
                 </div>
                 <div class="col-lg-4">
-                    <a href="createexercise.html"><button class="btn btn-info" id="create_exercise" type="button">Create Exercise</button></a>
+                    <a href="createexercise.html"><button class="btn btn-success" id="create_exercise" type="button" style="margin-top: 100px;">Create Exercise</button></a>
                 </div>
             </div>
         </div>
+        <script>
+            var modal = document.getElementById("myModal");
+            var span = document.getElementsByClassName("close")[0];
+            span.onclick = function() {
+                var child = document.getElementById('modalTable');
+                child.parentNode.removeChild(child);
+                modal.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    var child = document.getElementById('modalTable');
+                    child.parentNode.removeChild(child);
+                    modal.style.display = "none";
+                }
+            } 
+        </script>
     </body>
 </html>
