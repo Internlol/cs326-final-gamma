@@ -1,5 +1,5 @@
 
-const url = "https://fast-tundra-84247.herokuapp.com";
+const url = "http://localhost:8080";
 
 async function postData(url, data) {
     const resp = await fetch(url,
@@ -37,17 +37,8 @@ function deleteItem(id) {
 function editItem(id) {
     (async () => {
         let exercise = document.getElementById(id).id;
-        // const data = {'name': exercise};
-        // console.log(data);
         localStorage.setItem("name", exercise);
-        // console.log(localStorage);
         location.href = "editexercise.html";
-        // window.location.replace("editexercise.html");
-        // const newURL = url + "/users/exercises/edit";
-        // console.log("edit: fetching " + newURL);
-        // const resp = await postData(newURL, data);
-        // const j = await resp.json();
-        // console.log(j["name"]+" was "+j.result);  
     })();
 }
 
@@ -64,17 +55,42 @@ function editItem(id) {
         var deleteButton = document.createElement("input");
         deleteButton.setAttribute("type", "button");
         deleteButton.setAttribute("value", "X");
-        deleteButton.setAttribute("style", "float:right");
+        deleteButton.setAttribute("style", "float:right; margin-right:5px;");
         deleteButton.setAttribute("class", "btn btn-danger")
         var editButton = document.createElement("input");
         editButton.setAttribute("type", "button");
         editButton.setAttribute("value", "Edit");
-        editButton.setAttribute("style", "float:right");
-        editButton.setAttribute("class", "btn btn-light")
+        editButton.setAttribute("style", "float:right; margin-right:5px;");
+        editButton.setAttribute("class", "btn btn-info");
+
         node.setAttribute("class", "list-group-item");
         var text = "";
-        var temp = j[i];
-        text += temp.name;
+        text += j[i].name;
+        var viewButton = document.createElement("input");
+        viewButton.setAttribute("type", "button");
+        viewButton.setAttribute("value", "View");
+        viewButton.setAttribute("style", "float:right; margin-right:5px;");
+        viewButton.setAttribute("class", "btn btn-primary");
+        let obj = j[i];
+
+        viewButton.onclick = function view() {
+            stuff = obj;
+            console.log(stuff);
+            var modal = document.getElementById("myModal");
+            var table = document.createElement("tr");
+            table.setAttribute("id", "modalTable");
+            let tName = document.createElement("td");
+            tName.innerText = stuff.name;
+            let tDesc = document.createElement("td");
+            tDesc.innerText = stuff.desc;
+            let tSD = document.createElement("td");
+            tSD.innerText = JSON.stringify(stuff.setData);
+            table.appendChild(tName);
+            table.appendChild(tDesc);
+            table.appendChild(tSD);
+            document.getElementById("modalText").appendChild(table);
+            modal.style.display = "block";
+        };
         deleteButton.setAttribute('id',text);
         deleteButton.setAttribute('onClick','deleteItem("'+text+'")');
         editButton.setAttribute('id',text);
@@ -83,12 +99,9 @@ function editItem(id) {
         node.innerText = text;
         node.appendChild(deleteButton);
         node.appendChild(editButton);
+        node.appendChild(viewButton);
         document.getElementById("exercise_list").appendChild(node);
         lastid += 1;
     }
     console.log("read all exercises from server");
-    // $("ul").on("click", "input", function(e) {
-    //     e.preventDefault();
-    //     $(this).parent().remove();
-    // });
 })();
