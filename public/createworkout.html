@@ -24,38 +24,41 @@
         <!--nav bar end -->
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-4">
                     <h1>Create Workout</h1>
                 </div>
-                <div class="col-lg-4">
-                    <a href="myworkouts.html"><button id="discard_workout" type="button">Discard Workout</button></a><br>
-                    <a><button id="create_workout" type="button">Save and Add Workout</button></a><br>
+                <div class="col-4">
+                </div>
+                <div class="col-4 text-center align-self-center">
+                    <a href="myworkouts.html"><button id="discard_workout" type="button" class="btn btn-danger">Discard Workout</button></a>
+                    <a><button id="create_workout" type="button" class="btn btn-info">Create Workout</button></a>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col">
                     <p>
                         Name Your Workout:
                     </p>
                     <input type="text" id="name"><br>
                 </div>
-                <div class="col-lg-4">
+                <div class="col">
                     <table class="table table-hover">
-                        <th>Current Workouts</th>
+                        <th>Current Workout</th>
                         <tbody id=currentWorkouts>
                             <tr><td>Pushups</td></tr>
                             <tr><td>Dips</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="col-lg-4">
+                <div class="col">
                     <table class="table table-hover">
                         <th>Available Exercises</tr>
                         <tbody id="exercise_list">
-                            
+                            <tr><td>Pushups</td></tr>
+                            <tr><td>Dips</td></tr>
                         </tbody>
                     </table>
-                    <a href="createexercise.html" ><button id="add_workout" type="button">Add exercise</button></a><br>
+                    <a href="createexercise.html"><button id="add_workout" type="button" class="btn btn-info">Add exercise</button></a><br>
                 </div>
             </div>
         </div>
