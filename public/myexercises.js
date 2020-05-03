@@ -1,5 +1,5 @@
 
-const url = "http://localhost:8080";
+const url = "https://fast-tundra-84247.herokuapp.com";
 
 async function postData(url, data) {
     const resp = await fetch(url,
@@ -83,10 +83,25 @@ function editItem(id) {
             tName.innerText = stuff.name;
             let tDesc = document.createElement("td");
             tDesc.innerText = stuff.desc;
-            let tSD = document.createElement("td");
-            tSD.innerText = JSON.stringify(stuff.setData);
+            let setData = stuff.setData;
             table.appendChild(tName);
             table.appendChild(tDesc);
+            let tSD = document.createElement("td");
+            for(var i = 0; i < setData.length; i++) {
+                let text = "";
+                if (setData[i].repCount) {
+                    text += "Reps: " + setData[i].repCount;
+                }
+                if (setData[i].setLength) {
+                    text += " Length: " + setData[i].setLength;
+                }
+                if (setData[i].restTime) {
+                    text += " Rest: " + setData[i].restTime + "";
+                }
+                p = document.createElement("p")
+                p.innerText = JSON.stringify(text);
+                tSD.appendChild(p);
+            }
             table.appendChild(tSD);
             document.getElementById("modalText").appendChild(table);
             modal.style.display = "block";
