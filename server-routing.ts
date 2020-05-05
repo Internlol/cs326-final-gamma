@@ -30,15 +30,19 @@ export class MyServer {
 
         this.router.post('/register', this.registerHandler.bind(this));
         this.router.post('/login', this.loginHandler.bind(this));
-        // create
+        // Exercises
         this.router.post('/users/exercises/create', this.createExerciseHandler.bind(this));
-        // read
         this.router.post('/users/exercises/readOne', this.readOneExerciseHandler.bind(this));
-        // read all
         this.router.post('/users/exercises/readAll', this.readAllExercisesHandler.bind(this));
-        //
         this.router.post('/users/exercises/update', this.updateExerciseHandler.bind(this));
         this.router.post('/users/exercises/delete', this.deleteExerciseHandler.bind(this));
+
+        // Workouts
+        this.router.post('/users/workouts/create', this.createWorkoutHandler.bind(this));
+        this.router.post('/users/workouts/delete', this.deleteWorkoutHandler.bind(this));
+        this.router.post('/users/workouts/readOne', this.readOneWorkoutHandler.bind(this));
+        this.router.post('/users/workouts/readAll', this.readAllWorkoutsHandler.bind(this));
+        this.router.post('/users/workouts/update', this.updateWorkoutHandler.bind(this));
 
         this.server.use('/', this.router);
     }
@@ -47,10 +51,8 @@ export class MyServer {
         this.server.listen(port);
     }
 
+    // Exercise Handlers //
     private async createExerciseHandler(request, response) : Promise<void> {
-        // NAME
-        // DESCRIPTION
-        // LIST OF SETS (JSON)
         await this.createExercise(request.body.name, request.body.desc, request.body.setData, response);
     }
     private async readOneExerciseHandler(request, response) : Promise<void> {
@@ -61,16 +63,36 @@ export class MyServer {
     }
 
     private async updateExerciseHandler(request, response) : Promise<void> {
-        // NAME
-        // DESCRIPTION
-        // LIST OF SETS (JSON)
         await this.updateExercise(request.body.name, request.body.desc, request.body.setData, response);
     }
 
     private async deleteExerciseHandler(request, response) : Promise<void> {
         await this.deleteExercise(request.body.name, response);
     }
+    // End Exercise Handlers //
 
+    // Workout Handlers //
+    private async createWorkoutHandler(request, response) : Promise<void> {
+        await this.createWorkout(request.body.name, request.body.exerciseData, response);
+    }
+    
+    private async deleteWorkoutHandler(request, response) : Promise<void> {
+        await this.deleteWorkout(request.body.name, response);
+    }
+
+    private async readOneWorkoutHandler(request, response) : Promise<void> {
+        await this.readOneWorkout(request.body.name, response);
+    }
+    private async readAllWorkoutsHandler(request, response) : Promise<void> {
+        await this.readAllWorkouts(request.body.name, response);
+    }
+
+    private async updateWorkoutHandler(request, response) : Promise<void> {
+        await this.updateWorkout(request.body.name, request.body.exerciseData, response);
+    }
+    // End Workout Handlers //
+
+    // Exercise CRUD //
     public async createExercise(name: string, desc: string, setData: Array<any>, response): Promise<void>{
         await this.theDatabase.putExercise(name, desc, setData);
         response.write(JSON.stringify({'result' : 'created', 'name' : name}));
@@ -100,6 +122,39 @@ export class MyServer {
         response.write(JSON.stringify({'result' : 'deleted', 'name' : name}));
         response.end();
     }
+    // End Exercise CRUD //
+
+    // Workout CRUD //
+    public async createWorkout(name: string, exerciseData: Array<any>, response): Promise<void>{
+        await this.theDatabase.putWorkout(name, exerciseData);
+        response.write(JSON.stringify({'result' : 'created', 'name' : name}));
+        response.end();
+    }
+
+    public async deleteWorkout(name: string, response): Promise<void>{
+        await this.theDatabase.deleteWorkout(name);
+        response.write(JSON.stringify({'result' : 'deleted', 'name' : name}));
+        response.end();
+    }
+
+    public async readOneWorkout(name: string, response): Promise<void> {
+        let value = await this.theDatabase.getWorkout(name);
+        response.write(JSON.stringify(value));
+        response.end();
+    }
+
+    public async readAllWorkouts(name: string, response): Promise<void> {
+        let value = await this.theDatabase.getAllWorkouts();
+        response.write(JSON.stringify(value));
+        response.end();
+    }
+
+    public async updateWorkout(name: string, exerciseData: Array<any>, response): Promise<void>{
+        await this.theDatabase.putWorkout(name, exerciseData);
+        response.write(JSON.stringify({'result' : 'updated', 'name' : name}));
+        response.end();
+    }
+    // End Workout CRUD //
 
     private async registerHandler(request, response) : Promise<void> {
         try {
