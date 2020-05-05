@@ -40,6 +40,41 @@ export class Database {
 		})();
 	}
 
+	public async putWorkout(name: string, exerciseData: Array<any>){
+		let db = this.client.db(this.dbName);
+		let collection = db.collection("workouts");
+		let result = await collection.updateOne({'name': name}, { $set : { 'exerciseData': exerciseData}}, {'upsert': true});
+	}
+
+	public async getWorkout(name: string) : Promise<string> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection("workouts");
+		let result = await collection.findOne({'name' : name});
+		if (result) {
+			return result;
+		}
+		return null;
+	}
+
+	public async getAllWorkouts() : Promise<Array<any>> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection("workouts");
+		var result = await collection.find({});
+		let readArr = [];
+		while(await result.hasNext()) {
+			const doc = await result.next();
+			readArr.push(doc);
+		  }
+		return readArr;
+	}
+
+	public async deleteWorkout(name: string) : Promise<void> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection("workouts");
+		var result = await collection.deleteOne({'name': name});
+		// console.log(result);
+	}
+
 	public async putExercise(name: string, desc: string, setData: Array<any>){
 		let db = this.client.db(this.dbName);
 		let collection = db.collection("exercises");
