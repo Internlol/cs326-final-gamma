@@ -47,10 +47,8 @@ export class MyServer {
         this.server.listen(port);
     }
 
+    // Exercise Handlers //
     private async createExerciseHandler(request, response) : Promise<void> {
-        // NAME
-        // DESCRIPTION
-        // LIST OF SETS (JSON)
         await this.createExercise(request.body.name, request.body.desc, request.body.setData, response);
     }
     private async readOneExerciseHandler(request, response) : Promise<void> {
@@ -61,16 +59,21 @@ export class MyServer {
     }
 
     private async updateExerciseHandler(request, response) : Promise<void> {
-        // NAME
-        // DESCRIPTION
-        // LIST OF SETS (JSON)
         await this.updateExercise(request.body.name, request.body.desc, request.body.setData, response);
     }
 
     private async deleteExerciseHandler(request, response) : Promise<void> {
         await this.deleteExercise(request.body.name, response);
     }
+    // End Exercise Handlers //
 
+    // Workout Handlers //
+    private async createWorkoutHandler(request, response) : Promise<void> {
+        await this.createWorkout(request.body.name, request.body.exerciseData, response);
+    }
+    // End Workout Handlers //
+
+    // Exercise CRUD //
     public async createExercise(name: string, desc: string, setData: Array<any>, response): Promise<void>{
         await this.theDatabase.putExercise(name, desc, setData);
         response.write(JSON.stringify({'result' : 'created', 'name' : name}));
@@ -100,6 +103,15 @@ export class MyServer {
         response.write(JSON.stringify({'result' : 'deleted', 'name' : name}));
         response.end();
     }
+    // End Exercise CRUD //
+
+    // Workout CRUD //
+    public async createWorkout(name: string, exerciseData: Array<any>, response): Promise<void>{
+        // await this.theDatabase.putExercise(name, desc, setData);
+        response.write(JSON.stringify({'result' : 'created', 'name' : name}));
+        response.end();
+    }
+    // End Workout CRUD //
 
     private async registerHandler(request, response) : Promise<void> {
         try {
