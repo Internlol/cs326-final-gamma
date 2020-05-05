@@ -39,6 +39,7 @@ export class MyServer {
         //
         this.router.post('/users/exercises/update', this.updateExerciseHandler.bind(this));
         this.router.post('/users/exercises/delete', this.deleteExerciseHandler.bind(this));
+        this.router.post('/users/exercises/create', this.createWorkoutHandler.bind(this));
 
         this.server.use('/', this.router);
     }
