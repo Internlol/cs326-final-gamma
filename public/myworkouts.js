@@ -20,7 +20,7 @@ function deleteItem(id) {
     // delete from database
     (async () => {
         let workout = document.getElementById(id).id;
-        console.log(exercise);
+        console.log(workout);
         const data = {'name': workout};
         const newURL = url + "/users/workouts/delete";
         console.log("counterDelete: fetching " + newURL);
