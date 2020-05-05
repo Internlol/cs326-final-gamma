@@ -21,13 +21,13 @@ function deleteItem(id) {
     // delete from database
     (async () => {
         let exercise = document.getElementById(id).id;
-        console.log(exercise);
+        // console.log(exercise);
         const data = {'name': exercise};
         const newURL = url + "/users/exercises/delete";
-        console.log("counterDelete: fetching " + newURL);
+        // console.log("Delete: fetching " + newURL);
         const resp = await postData(newURL, data);
         const j = await resp.json();
-        console.log(j["name"]+" was "+j.result);	    
+        // console.log(j["name"]+" was "+j.result);	    
         })();
 
     var temp = document.getElementById("exercise_list");
@@ -79,9 +79,12 @@ function editItem(id) {
             var modal = document.getElementById("myModal");
             var table = document.createElement("tr");
             table.setAttribute("id", "modalTable");
+            // table.setAttribute("style", "max-width: 50%;");
             let tName = document.createElement("td");
+            tName.setAttribute("style", "max-width: 300px;");
             tName.innerText = stuff.name;
             let tDesc = document.createElement("td");
+            tDesc.setAttribute("style", "max-width: 300px;");
             tDesc.innerText = stuff.desc;
             let setData = stuff.setData;
             table.appendChild(tName);
@@ -102,6 +105,7 @@ function editItem(id) {
                 p.innerText = JSON.stringify(text);
                 tSD.appendChild(p);
             }
+            tSD.setAttribute("style", "max-width: 300px;");
             table.appendChild(tSD);
             document.getElementById("modalText").appendChild(table);
             modal.style.display = "block";
