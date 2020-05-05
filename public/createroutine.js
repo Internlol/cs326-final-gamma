@@ -36,7 +36,7 @@ function renderTable(){
     let end_scope = parseInt(document.getElementById("end_scope").value);
     timetable.setScope(start_scope, end_scope);
     let name = document.getElementById("routine_name").value;
-    timetable.addLocations([name, "Gym", "Hiking Trail", "Home"]);
+    timetable.addLocations([name]);
     for(var i = 0; i < workoutArray.length; i++){
         let wobj = workoutArray[i];
         shr = parseInt(wobj.start.substr(0,2));
