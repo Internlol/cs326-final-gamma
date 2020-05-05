@@ -33,12 +33,8 @@ function exerciseCreate() {
         const resp = await postData(newURL, data);
         const j = await resp.json();
         console.log(j['name'] + " was " + j['result']);
-        // if (j['result'] !== 'error') {
-        //     document.getElementById("output").innerHTML = "101: <b>" + userName + ", " + counterName + " created.</b>";
-        // } else {
-        //     document.getElementById("output").innerHTML = "100: " + userName + ", " + counterName + " not found.</b>";
-        // }
-        })();
+        location.href = "myexercises.html";
+    })();
 }
 
 function addSet() {

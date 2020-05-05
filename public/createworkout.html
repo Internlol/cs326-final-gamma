@@ -5,6 +5,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css">
         <script src="createworkout.js" defer></script>
+        <script src="https://SortableJS.github.io/Sortable/Sortable.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js" defer></script> -->
         <title>Create Workout</title>
     </head>
     <body>
@@ -24,40 +26,51 @@
         <!--nav bar end -->
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-4">
                     <h1>Create Workout</h1>
                 </div>
-                <div class="col-lg-4">
-                    <a href="myworkouts.html"><button id="discard_workout" type="button">Discard Workout</button></a><br>
-                    <a><button id="create_workout" type="button">Save and Add Workout</button></a><br>
+                <div class="col-4">
+                </div>
+                <div class="col-4 text-center align-self-center">
+                    <a href="myworkouts.html"><button id="discard_workout" type="button" class="btn btn-danger">Discard Workout</button></a>
+                    <a><button id="create_workout" type="button" class="btn btn-info">Create Workout</button></a>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col">
                     <p>
                         Name Your Workout:
                     </p>
                     <input type="text" id="name"><br>
                 </div>
-                <div class="col-lg-4">
-                    <table class="table table-hover">
-                        <th>Current Workouts</th>
-                        <tbody id=currentWorkouts>
-                            <tr><td>Pushups</td></tr>
-                            <tr><td>Dips</td></tr>
-                        </tbody>
-                    </table>
+                <div class="col">
+                    <label>Current Workout</label>
+                    <button id="remove_exercise" type="button" class="btn btn-light">Remove Last Exercise</button>
+                    <ul class="list-group" id="current_workout"></ul>
                 </div>
-                <div class="col-lg-4">
-                    <table class="table table-hover">
-                        <th>Available Exercises</tr>
-                        <tbody id="exercise_list">
-                            
-                        </tbody>
-                    </table>
-                    <a href="createexercise.html" ><button id="add_workout" type="button">Add exercise</button></a><br>
+                <div class="col">
+                    <p>Available Exercises</p>
+                    <ul class="list-group" id="exercise_list"></ul>
                 </div>
             </div>
         </div>
     </body>
+    <script>
+        // Simple list
+        Sortable.create(exercise_list, {
+            group: {
+                name: 'shared',
+                pull: 'clone',
+                put: false // Do not allow items to be put into this list
+            },
+            animation: 150,
+            sort: false // To disable sorting: set sort to false
+        });
+        Sortable.create(current_workout, {
+            group: {
+                name: 'shared'
+            },
+            animation: 150
+        });
+    </script>
 </html>
