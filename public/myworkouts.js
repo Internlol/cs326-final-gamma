@@ -19,28 +19,28 @@ async function postData(url, data) {
 function deleteItem(id) {
     // delete from database
     (async () => {
-        let exercise = document.getElementById(id).id;
+        let workout = document.getElementById(id).id;
         console.log(exercise);
-        const data = {'name': exercise};
-        const newURL = url + "/users/exercises/delete";
+        const data = {'name': workout};
+        const newURL = url + "/users/workouts/delete";
         console.log("counterDelete: fetching " + newURL);
         const resp = await postData(newURL, data);
         const j = await resp.json();
         console.log(j["name"]+" was "+j.result);	    
         })();
 
-    var temp = document.getElementById("exercise_list");
+    var temp = document.getElementById("workout_list");
     temp.removeChild(document.getElementById(id));
 }
 
 function editItem(id) {
     (async () => {
-        let exercise = document.getElementById(id).id;
+        let workout = document.getElementById(id).id;
         // const data = {'name': exercise};
         // console.log(data);
-        localStorage.setItem("name", exercise);
+        localStorage.setItem("name", workout);
         // console.log(localStorage);
-        location.href = "editexercise.html";
+        location.href = "editworkout.html";
         // window.location.replace("editexercise.html");
         // const newURL = url + "/users/exercises/edit";
         // console.log("edit: fetching " + newURL);
@@ -52,9 +52,9 @@ function editItem(id) {
 
 // call read all function
 (async () => {
-    console.log("fetching all exercises from server");
+    console.log("fetching all workouts from server");
     const data = {};
-    const newURL = url + "/users" + "/exercises" + "/readAll";
+    const newURL = url + "/users" + "/workouts" + "/readAll";
     const resp = await postData(newURL, data);
     const j = await resp.json();
     var lastid = 0;
@@ -81,11 +81,11 @@ function editItem(id) {
         node.setAttribute("id", text);
         node.innerText = text;
         node.appendChild(deleteButton);
-        node.appendChild(editButton);
-        document.getElementById("exercise_list").appendChild(node);
+        //node.appendChild(editButton);
+        document.getElementById("workout_list").appendChild(node);
         lastid += 1;
     }
-    console.log("read all exercises from server");
+    console.log("read all workouts from server");
     // $("ul").on("click", "input", function(e) {
     //     e.preventDefault();
     //     $(this).parent().remove();
