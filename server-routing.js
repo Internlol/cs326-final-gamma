@@ -32,25 +32,26 @@ class MyServer {
         // this.router.get('/users', (request, response) => {response.json(users)});
         this.router.post('/register', this.registerHandler.bind(this));
         this.router.post('/login', this.loginHandler.bind(this));
-        // create
+        // Exercises
         this.router.post('/users/exercises/create', this.createExerciseHandler.bind(this));
-        // read
         this.router.post('/users/exercises/readOne', this.readOneExerciseHandler.bind(this));
-        // read all
         this.router.post('/users/exercises/readAll', this.readAllExercisesHandler.bind(this));
-        //
         this.router.post('/users/exercises/update', this.updateExerciseHandler.bind(this));
         this.router.post('/users/exercises/delete', this.deleteExerciseHandler.bind(this));
+        // Workouts
+        this.router.post('/users/workouts/create', this.createWorkoutHandler.bind(this));
+        this.router.post('/users/workouts/delete', this.deleteWorkoutHandler.bind(this));
+        this.router.post('/users/workouts/readOne', this.readOneWorkoutHandler.bind(this));
+        this.router.post('/users/workouts/readAll', this.readAllWorkoutsHandler.bind(this));
+        this.router.post('/users/workouts/update', this.updateWorkoutHandler.bind(this));
         this.server.use('/', this.router);
     }
     listen(port) {
         this.server.listen(port);
     }
+    // Exercise Handlers //
     createExerciseHandler(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            // NAME
-            // DESCRIPTION
-            // LIST OF SETS (JSON)
             yield this.createExercise(request.body.name, request.body.desc, request.body.setData, response);
         });
     }
@@ -66,9 +67,6 @@ class MyServer {
     }
     updateExerciseHandler(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            // NAME
-            // DESCRIPTION
-            // LIST OF SETS (JSON)
             yield this.updateExercise(request.body.name, request.body.desc, request.body.setData, response);
         });
     }
@@ -77,6 +75,35 @@ class MyServer {
             yield this.deleteExercise(request.body.name, response);
         });
     }
+    // End Exercise Handlers //
+    // Workout Handlers //
+    createWorkoutHandler(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.createWorkout(request.body.name, request.body.exerciseData, response);
+        });
+    }
+    deleteWorkoutHandler(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.deleteWorkout(request.body.name, response);
+        });
+    }
+    readOneWorkoutHandler(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.readOneWorkout(request.body.name, response);
+        });
+    }
+    readAllWorkoutsHandler(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.readAllWorkouts(request.body.name, response);
+        });
+    }
+    updateWorkoutHandler(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.updateWorkout(request.body.name, request.body.exerciseData, response);
+        });
+    }
+    // End Workout Handlers //
+    // Exercise CRUD //
     createExercise(name, desc, setData, response) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.theDatabase.putExercise(name, desc, setData);
@@ -112,6 +139,44 @@ class MyServer {
             response.end();
         });
     }
+    // End Exercise CRUD //
+    // Workout CRUD //
+    createWorkout(name, exerciseData, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.theDatabase.putWorkout(name, exerciseData);
+            response.write(JSON.stringify({ 'result': 'created', 'name': name }));
+            response.end();
+        });
+    }
+    deleteWorkout(name, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.theDatabase.deleteWorkout(name);
+            response.write(JSON.stringify({ 'result': 'deleted', 'name': name }));
+            response.end();
+        });
+    }
+    readOneWorkout(name, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let value = yield this.theDatabase.getWorkout(name);
+            response.write(JSON.stringify(value));
+            response.end();
+        });
+    }
+    readAllWorkouts(name, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let value = yield this.theDatabase.getAllWorkouts();
+            response.write(JSON.stringify(value));
+            response.end();
+        });
+    }
+    updateWorkout(name, exerciseData, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.theDatabase.putWorkout(name, exerciseData);
+            response.write(JSON.stringify({ 'result': 'updated', 'name': name }));
+            response.end();
+        });
+    }
+    // End Workout CRUD //
     registerHandler(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

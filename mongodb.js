@@ -44,6 +44,45 @@ class Database {
             yield this.client.connect().catch(err => { console.log(err); });
         }))();
     }
+    putWorkout(name, exerciseData) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let db = this.client.db(this.dbName);
+            let collection = db.collection("workouts");
+            let result = yield collection.updateOne({ 'name': name }, { $set: { 'exerciseData': exerciseData } }, { 'upsert': true });
+        });
+    }
+    getWorkout(name) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let db = this.client.db(this.dbName);
+            let collection = db.collection("workouts");
+            let result = yield collection.findOne({ 'name': name });
+            if (result) {
+                return result;
+            }
+            return null;
+        });
+    }
+    getAllWorkouts() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let db = this.client.db(this.dbName);
+            let collection = db.collection("workouts");
+            var result = yield collection.find({});
+            let readArr = [];
+            while (yield result.hasNext()) {
+                const doc = yield result.next();
+                readArr.push(doc);
+            }
+            return readArr;
+        });
+    }
+    deleteWorkout(name) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let db = this.client.db(this.dbName);
+            let collection = db.collection("workouts");
+            var result = yield collection.deleteOne({ 'name': name });
+            // console.log(result);
+        });
+    }
     putExercise(name, desc, setData) {
         return __awaiter(this, void 0, void 0, function* () {
             let db = this.client.db(this.dbName);
