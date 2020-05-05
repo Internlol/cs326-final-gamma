@@ -26,11 +26,12 @@ function createWorkout() {
         currentWorkoutArray = []
         // iterate through list
         let currentWorkoutList = document.getElementById("current_workout").childNodes;
-        for(let i = 1; i < currentWorkoutList.length; i++) {
+        for(let i = 0; i < currentWorkoutList.length; i++) {
             for(let j = 0; j < availableExerciseArray.length; j++) {
                 tempExercise = availableExerciseArray[j];
                 if(currentWorkoutList[i].innerText === tempExercise.name) {
                     currentWorkoutArray.push(tempExercise);
+                    break;
                 }
             }
         }
@@ -42,7 +43,7 @@ function createWorkout() {
         console.log("workoutCreate: fetching " + newURL);
         const resp = await postData(newURL, data);
         const j = await resp.json();
-        // location.href = "myworkouts.html";
+        location.href = "myworkouts.html";
         })();
 }
 
