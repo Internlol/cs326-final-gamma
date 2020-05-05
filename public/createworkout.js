@@ -39,9 +39,10 @@ function createWorkout() {
         if(currentWorkoutArray.length < 1) { return; }
         const data = { 'name': name, 'exerciseData': currentWorkoutArray };
         const newURL = "/users" + "/workouts" + "/create";
-        console.log("exerciseCreate: fetching " + newURL);
+        console.log("workoutCreate: fetching " + newURL);
         const resp = await postData(newURL, data);
         const j = await resp.json();
+        // location.href = "myworkouts.html";
         })();
 }
 
