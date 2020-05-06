@@ -96,7 +96,7 @@ function createRoutine() {
 }
 
 (async () => {
-    console.log("fetching all exercises from server");
+    console.log("fetching all workouts from server");
     const data = {};
     const newURL = url + "/users" + "/workouts" + "/readAll";
     const resp = await postData(newURL, data);
