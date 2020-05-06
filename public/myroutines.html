@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css">
+        <script src="myroutines.js" defer></script>
         <title>My Routines</title>
     </head>
     <body>
@@ -24,63 +25,12 @@
                 <div class="col-lg-8">
                     <h1>My Routines</h1>
                     <p>Below is a list of your routines.</p>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Routine
-                                </th>
-                                <th class="text-right">
-                                    Date Created
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    Routine 5
-                                </td>
-                                <td class="text-right">
-                                    4/7/2020
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Routine 4
-                                </td>
-                                <td class="text-right">
-                                    4/6/2020
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Routine 3
-                                </td>
-                                <td class="text-right">
-                                    4/6/2020
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Routine 2
-                                </td>
-                                <td class="text-right">
-                                    4/5/2020
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Routine 1
-                                </td>
-                                <td class="text-right">
-                                    4/5/2020
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <ul class="list-group" id="routine_list">
+
+                    </ul>
                 </div>
                 <div class="col-lg-4">
-                    <a href="createroutine.html"><button id="create_routine" type="button">Create Routine</button></a>
+                    <a href="createroutine.html"><button class="btn btn-success" id="create_routine" type="button">Create Routine</button></a>
                 </div>
             </div>
         </div>

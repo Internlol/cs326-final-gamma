@@ -4,6 +4,9 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="timetablejs.css">
+        <script src="timetable.js"></script>
+        <script src="createroutine.js" defer></script>
         <title>Create Routine</title>
     </head>
     <body>
@@ -27,50 +30,51 @@
                     <h1>Create Routine</h1>
                 </div>
                 <div class="col-lg-4">
-                    <a href="myroutines.html"><button id="discard_exercise" type="button">Discard Routine</button></a><br>
-                    <a href="myroutines.html"><button id="create_exercise" type="button">Save and Add Routine</button></a><br>
+                    <a href="myroutines.html"><button class="btn btn-danger" id="discard_routine" type="button">Discard Routine</button></a><br>
+                    <button class="btn btn-info" id="create_routine" type="button" onclick="createRoutine()">Save and Add Routine</button><br>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <p>
-                        Name Your Routine:
-                    </p>
-                    <input type="text"><br>
-                    <img src="images/createroutinepageimage.png" class="img-fluid">
+                    <label for="routine_name">Name your routine: </label> 
+                    <input type="text" id="routine_name" name="routine_name">
+                    <label for="curr_routine">Current routine: </label>
+                    <ul class="list-group" id="curr_routine">
+
+                    </ul>
+                    <button class="btn btn-light" id="remove_workout" type="button" onclick="removeWorkout()">Remove Last Workout</button>
+                    <p>Set the hour view scope for time table (0-23 hours):</p>
+                    <label for="start_scope">Start:</label>
+                    <input type="number" id="start_scope" name="start_scope" min="0" max="22">
+                    <label for="end_scope">End:</label>
+                    <input type="number" id="end_scope" name="end_scope" min="1" max="23">
+                    <button class="btn btn-light" id="render_table" type="button" onclick="renderTable()">Create Timetable</button>
                 </div>
                 <div class="col-lg-4">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Available Workouts
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    Upper Body
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Cardio
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p>Start Time:</p>
-                    <input type="text">
-                    <p>End Time:</p>
-                    <input type="text"><br>
-                    <button id="add_workout" type="button">Add workout</button><br>
+                    <h6>Available workouts: </h6>
+                    <ul class="list-group" id="avail_workouts">
+                        <!-- <li class="list-group-item" id="Workout1">
+                            Workout1
+                            <input type="button" value="Select" style="float: right; margin-right: 5px;" class="btn btn-light" id="Workout1" onclick="selectItem('Workout1')">
+                        </li>
+                        <li class="list-group-item" id="Workout2">
+                            Workout2
+                            <input type="button" value="Select" style="float: right; margin-right: 5px;" class="btn btn-light" id="Workout2" onclick="selectItem('Workout2')">
+                        </li> -->
+                    </ul>
+                    <label for="selected_workout">Selected Workout: </label>
+                    <p id="selected_workout"></p>
+                    <label for="start_time">Select a start time:</label>
+                    <input type="time" id="start_time" name="start_time">
+                    <label for="start_time">Select an end time:</label>
+                    <input type="time" id="end_time" name="end_time">
+                    <button class="btn btn-block btn-light" id="submit_workout" type="button" onclick="addWorkout()">Add Workout to Routine</button>
                 </div>
                 <div class="col-lg-4">
 
                 </div>
             </div>
+            <div class="timetable"></div>
         </div>
     </body>
 </html>

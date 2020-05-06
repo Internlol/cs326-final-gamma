@@ -110,4 +110,39 @@ export class Database {
 		console.log(result);
 	}
 
+	public async putRoutine(name: string, workoutData: Array<any>){
+		let db = this.client.db(this.dbName);
+		let collection = db.collection("routines");
+		let result = await collection.updateOne({'name': name}, { $set : { 'workoutData': workoutData}}, {'upsert': true});
+	}
+
+	public async getRoutine(name: string) : Promise<string> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection("routines");
+		let result = await collection.findOne({'name' : name});
+		if (result) {
+			return result;
+		}
+		return null;
+	}
+
+	public async getAllRoutines() : Promise<Array<any>> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection("routines");
+		var result = await collection.find({});
+		let readArr = [];
+		while(await result.hasNext()) {
+			const doc = await result.next();
+			readArr.push(doc);
+		  }
+		return readArr;
+	}
+
+	public async deleteRoutine(name: string) : Promise<void> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection("routines");
+		var result = await collection.deleteOne({'name': name});
+		// console.log(result);
+	}
+
 }

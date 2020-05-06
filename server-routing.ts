@@ -44,6 +44,13 @@ export class MyServer {
         this.router.post('/users/workouts/readAll', this.readAllWorkoutsHandler.bind(this));
         this.router.post('/users/workouts/update', this.updateWorkoutHandler.bind(this));
 
+        // Workouts
+        this.router.post('/users/routines/create', this.createRoutineHandler.bind(this));
+        this.router.post('/users/routines/delete', this.deleteRoutineHandler.bind(this));
+        this.router.post('/users/routines/readOne', this.readOneRoutineHandler.bind(this));
+        this.router.post('/users/routines/readAll', this.readAllRoutinesHandler.bind(this));
+        this.router.post('/users/routines/update', this.updateRoutineHandler.bind(this));
+
         this.server.use('/', this.router);
     }
 
@@ -91,6 +98,27 @@ export class MyServer {
         await this.updateWorkout(request.body.name, request.body.exerciseData, response);
     }
     // End Workout Handlers //
+
+    // Routine Handlers //
+    private async createRoutineHandler(request, response) : Promise<void> {
+        await this.createRoutine(request.body.name, request.body.workoutData, response);
+    }
+    
+    private async deleteRoutineHandler(request, response) : Promise<void> {
+        await this.deleteRoutine(request.body.name, response);
+    }
+
+    private async readOneRoutineHandler(request, response) : Promise<void> {
+        await this.readOneRoutine(request.body.name, response);
+    }
+    private async readAllRoutinesHandler(request, response) : Promise<void> {
+        await this.readAllRoutines(request.body.name, response);
+    }
+
+    private async updateRoutineHandler(request, response) : Promise<void> {
+        await this.updateRoutine(request.body.name, request.body.workoutData, response);
+    }
+    // End Routine Handlers //
 
     // Exercise CRUD //
     public async createExercise(name: string, desc: string, setData: Array<any>, response): Promise<void>{
@@ -155,6 +183,38 @@ export class MyServer {
         response.end();
     }
     // End Workout CRUD //
+
+    // Routines CRUD //
+    public async createRoutine(name: string, workoutData: Array<any>, response): Promise<void>{
+        await this.theDatabase.putRoutine(name, workoutData);
+        response.write(JSON.stringify({'result' : 'created', 'name' : name}));
+        response.end();
+    }
+
+    public async deleteRoutine(name: string, response): Promise<void>{
+        await this.theDatabase.deleteRoutine(name);
+        response.write(JSON.stringify({'result' : 'deleted', 'name' : name}));
+        response.end();
+    }
+
+    public async readOneRoutine(name: string, response): Promise<void> {
+        let value = await this.theDatabase.getRoutine(name);
+        response.write(JSON.stringify(value));
+        response.end();
+    }
+
+    public async readAllRoutines(name: string, response): Promise<void> {
+        let value = await this.theDatabase.getAllRoutines();
+        response.write(JSON.stringify(value));
+        response.end();
+    }
+
+    public async updateRoutine(name: string, workoutData: Array<any>, response): Promise<void>{
+        await this.theDatabase.putRoutine(name, workoutData);
+        response.write(JSON.stringify({'result' : 'updated', 'name' : name}));
+        response.end();
+    }
+    // End Routine CRUD //
 
     private async registerHandler(request, response) : Promise<void> {
         try {

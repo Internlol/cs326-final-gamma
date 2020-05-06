@@ -35,7 +35,6 @@ function createWorkout() {
                 }
             }
         }
-        console.log(currentWorkoutArray);
         // check if the array is empty, if empty do nothing
         if(currentWorkoutArray.length < 1) { return; }
         const data = { 'name': name, 'exerciseData': currentWorkoutArray };
