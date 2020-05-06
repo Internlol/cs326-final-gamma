@@ -44,6 +44,12 @@ class MyServer {
         this.router.post('/users/workouts/readOne', this.readOneWorkoutHandler.bind(this));
         this.router.post('/users/workouts/readAll', this.readAllWorkoutsHandler.bind(this));
         this.router.post('/users/workouts/update', this.updateWorkoutHandler.bind(this));
+        // Workouts
+        this.router.post('/users/routines/create', this.createRoutineHandler.bind(this));
+        this.router.post('/users/routines/delete', this.deleteRoutineHandler.bind(this));
+        this.router.post('/users/routines/readOne', this.readOneRoutineHandler.bind(this));
+        this.router.post('/users/routines/readAll', this.readAllRoutinesHandler.bind(this));
+        this.router.post('/users/routines/update', this.updateRoutineHandler.bind(this));
         this.server.use('/', this.router);
     }
     listen(port) {
@@ -103,6 +109,33 @@ class MyServer {
         });
     }
     // End Workout Handlers //
+    // Routine Handlers //
+    createRoutineHandler(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.createRoutine(request.body.name, request.body.workoutData, response);
+        });
+    }
+    deleteRoutineHandler(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.deleteRoutine(request.body.name, response);
+        });
+    }
+    readOneRoutineHandler(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.readOneRoutine(request.body.name, response);
+        });
+    }
+    readAllRoutinesHandler(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.readAllRoutines(request.body.name, response);
+        });
+    }
+    updateRoutineHandler(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.updateRoutine(request.body.name, request.body.workoutData, response);
+        });
+    }
+    // End Routine Handlers //
     // Exercise CRUD //
     createExercise(name, desc, setData, response) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -177,6 +210,43 @@ class MyServer {
         });
     }
     // End Workout CRUD //
+    // Routines CRUD //
+    createRoutine(name, workoutData, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.theDatabase.putRoutine(name, workoutData);
+            response.write(JSON.stringify({ 'result': 'created', 'name': name }));
+            response.end();
+        });
+    }
+    deleteRoutine(name, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.theDatabase.deleteRoutine(name);
+            response.write(JSON.stringify({ 'result': 'deleted', 'name': name }));
+            response.end();
+        });
+    }
+    readOneRoutine(name, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let value = yield this.theDatabase.getRoutine(name);
+            response.write(JSON.stringify(value));
+            response.end();
+        });
+    }
+    readAllRoutines(name, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let value = yield this.theDatabase.getAllRoutines();
+            response.write(JSON.stringify(value));
+            response.end();
+        });
+    }
+    updateRoutine(name, workoutData, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.theDatabase.putRoutine(name, workoutData);
+            response.write(JSON.stringify({ 'result': 'updated', 'name': name }));
+            response.end();
+        });
+    }
+    // End Routine CRUD //
     registerHandler(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

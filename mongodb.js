@@ -122,5 +122,44 @@ class Database {
             console.log(result);
         });
     }
+    putRoutine(name, workoutData) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let db = this.client.db(this.dbName);
+            let collection = db.collection("routines");
+            let result = yield collection.updateOne({ 'name': name }, { $set: { 'workoutData': workoutData } }, { 'upsert': true });
+        });
+    }
+    getRoutine(name) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let db = this.client.db(this.dbName);
+            let collection = db.collection("routines");
+            let result = yield collection.findOne({ 'name': name });
+            if (result) {
+                return result;
+            }
+            return null;
+        });
+    }
+    getAllRoutines() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let db = this.client.db(this.dbName);
+            let collection = db.collection("routines");
+            var result = yield collection.find({});
+            let readArr = [];
+            while (yield result.hasNext()) {
+                const doc = yield result.next();
+                readArr.push(doc);
+            }
+            return readArr;
+        });
+    }
+    deleteRoutine(name) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let db = this.client.db(this.dbName);
+            let collection = db.collection("routines");
+            var result = yield collection.deleteOne({ 'name': name });
+            // console.log(result);
+        });
+    }
 }
 exports.Database = Database;
