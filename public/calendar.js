@@ -1,95 +1,84 @@
+const fs = require('fs');
+const readline = require('readline');
+const {google} = require('googleapis');
 
+// If modifying these scopes, delete token.json.
+const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
+// The file token.json stores the user's access and refresh tokens, and is
+// created automatically when the authorization flow completes for the first
+// time.
+const TOKEN_PATH = 'token.json';
 
-async function postData(url, data) {
-    const resp = await fetch(url,
-                             {
-                                 method: 'POST',
-                                 mode: 'cors',
-                                 cache: 'no-cache',
-                                 credentials: 'same-origin',
-                                 headers: {
-                                     'Content-Type': 'application/json'
-                                 },
-                                 redirect: 'follow',
-                                 body: JSON.stringify(data)
-                             });
-    return resp;
+// Load client secrets from a local file.
+fs.readFile('credentials.json', (err, content) => {
+  if (err) return console.log('Error loading client secret file:', err);
+  // Authorize a client with credentials, then call the Google Calendar API.
+  authorize(JSON.parse(content), listEvents);
+});
+
+/**
+ * Create an OAuth2 client with the given credentials, and then execute the
+ * given callback function.
+ * @param {Object} credentials The authorization client credentials.
+ * @param {function} callback The callback to call with the authorized client.
+ */
+function authorize(credentials, callback) {
+  const {client_secret, client_id, redirect_uris} = credentials.installed;
+  const oAuth2Client = new google.auth.OAuth2(
+      client_id, client_secret, redirect_uris[0]);
+
+  // Check if we have previously stored a token.
+  fs.readFile(TOKEN_PATH, (err, token) => {
+    if (err) return getAccessToken(oAuth2Client, callback);
+    oAuth2Client.setCredentials(JSON.parse(token));
+    callback(oAuth2Client);
+  });
 }
 
-function createNewEvent() {
-    (async () => {
-        var summary = "Routine";
-        var desc = "Description";
-        var start = "+00:00";
-        var end = "+00:00";
-        var calId = "umass.edu_l664sq5n14rf9g0gbt6rr3sdj8@group.calendar.google.com";
-
-        var event = {
-            'summary': summary,
-            'location': loc,
-            'description': desc,
-            'start': { 'dateTime': start },
-            'end': { 'dateTime': end }
-        };
-
-        const resp = await postData(newURL, event);
-        const j = await resp.json();
-        console.log(j);
-
-        // var request = gapi.client.calendar.events.insert({
-        //     'calendarId' : calId,
-        //     'resource' : event
-        // });
-
-        // request.execute(function (event) {
-        //     appendPre('Event created: ' + event.htmlLink);
-        // });
-    })();
+/**
+ * Get and store new token after prompting for user authorization, and then
+ * execute the given callback with the authorized OAuth2 client.
+ * @param {google.auth.OAuth2} oAuth2Client The OAuth2 client to get token for.
+ * @param {getEventsCallback} callback The callback for the authorized client.
+ */
+function getAccessToken(oAuth2Client, callback) {
+    const authUrl = oAuth2Client.generateAuthUrl({
+      access_type: 'offline',
+      scope: SCOPES,
+    });
+    console.log('Authorize this app by visiting this url:', authUrl);
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+    rl.question('Enter the code from that page here: ', (code) => {
+        rl.close();
+        oAuth2Client.getToken(code, (err, token) => {
+            if (err) return console.error('Error retrieving access token', err);
+            oAuth2Client.setCredentials(token);
+            // Store the token to disk for later program executions
+            fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
+                if (err) return console.error(err);
+                console.log('Token stored to', TOKEN_PATH);
+            });
+            callback(oAuth2Client);
+        });
+    });
 }
 
-// var xhr = new XMLHttpRequest();
-// xhr.open("POST", yourUrl, true);
-// xhr.setRequestHeader('Content-Type', 'application/json');
-// xhr.send(JSON.stringify({
-//     value: value
-// }));
 
-function convert(icsMSG){
-    window.open( "data:text/calendar;charset=utf8," + escape(icsMSG));
+function insertEvent(auth, calId, event) {
+    const calendar = google.calendar({version: 'v3', auth});
+    calendar.events.insert({
+        auth: auth,
+        calendarId: calId,
+        resource: event,
+      }, function(err, event) {
+        if (err) {
+          console.log('There was an error contacting the Calendar service: ' + err);
+          return;
+        }
+        console.log('Event created: %s', event.htmlLink);
+      });
+
 }
-
-(async () => {
-    var todayDate	= new Date();
-    var msgData	= todayDate.toISOString();
-    var startDate	= todayDate.toISOString();
-    var endDate	= todayDate.toISOString();
-    var title = "title";
-
-    var icsMSG1 = "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:https://www.google.com/\r\nBEGIN:VEVENT\r\nUID:https://www.google.com/\r\nDTSTAMP:" + msgData + "Z\r\nDTSTART:" + startDate + "\r\n";
-
-    var icsMSG2 = '';
-    if(endDate != '') {
-        icsMSG2 = "DTEND:" + endDate +"\r\n";
-    }
-
-    icsMSG3 = "SUMMARY:" + title + "\r\nEND:VEVENT\r\nEND:VCALENDAR";
-
-    icsMSG = icsMSG1 + icsMSG2 + icsMSG3;
-    console.log("icsMSG: ");
-    console.log(icsMSG);
-
-    var test = document.getElementById("test-ics");
-    // button.addEventListener("click", convert(icsMSG));
-    var node = document.createElement("a");
-    node.setAttribute("id", "test-ics");
-    node.onclick = function create() {
-        window.open( "data:text/calendar;charset=utf8," + escape(icsMSG));
-    }
-    node.innerHTML = "Add to Calendar";
-    test.appendChild(node);
-
-    // console.log(button);
-    // button.setAttribute('onClick', convert(icsMSG));
-    // console.log(button);
-})();
-
