@@ -10,12 +10,12 @@ const SCOPES = ['https://www.googleapis.com/auth/calendar'];
 // time.
 const TOKEN_PATH = 'token.json';
 
-// Load client secrets from a local file.
-fs.readFile('credentials.json', (err, content) => {
-  if (err) return console.log('Error loading client secret file:', err);
-  // Authorize a client with credentials, then call the Google Calendar API.
-  authorize(JSON.parse(content), listEvents);
-});
+// // Load client secrets from a local file.
+// fs.readFile('credentials.json', (err, content) => {
+//   if (err) return console.log('Error loading client secret file:', err);
+//   // Authorize a client with credentials, then call the Google Calendar API.
+//   authorize(JSON.parse(content), listEvents);
+// });
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -67,6 +67,35 @@ function getAccessToken(oAuth2Client, callback) {
     });
 }
 
+function insertCal(auth, name) {
+  const calendar = google.calendar({version: 'v3', auth});
+  calendar.calendars.insert({
+        auth: auth,
+        summary: name,
+        timeZone: 'America/New_York'
+      }, function(err, event) {
+        if (err) {
+          console.log('There was an error contacting the Calendar service: ' + err);
+          return;
+        }
+        console.log('Calendar created: %s', event.htmlLink);
+      });
+
+    const calList = calendar.calendarList.list; // if summary (name) matches then get its id
+    const calItems = calList.items;
+    let calendarId = "";
+    for (let i = 0; i < calItems.length; i++) {
+      if (calItems[i].summary == name) {
+        calendarId = calItems[i].id;
+        break;
+      }
+    }
+    if (calendarId == "") {
+      return null;
+    }
+    return calendarId;
+}
+
 
 function insertEvent(auth, calId, event) {
     const calendar = google.calendar({version: 'v3', auth});
@@ -81,7 +110,6 @@ function insertEvent(auth, calId, event) {
         }
         console.log('Event created: %s', event.htmlLink);
       });
-
 }
 
 // Example Event Object
