@@ -16,23 +16,6 @@ async function postData(url, data) {
     return resp;
 }
 
-// function deleteItem(id) {
-//     // delete from database
-//     (async () => {
-//         let exercise = document.getElementById(id).id;
-//         // console.log(exercise);
-//         const data = {'name': exercise};
-//         const newURL = url + "/users/exercises/delete";
-//         // console.log("Delete: fetching " + newURL);
-//         const resp = await postData(newURL, data);
-//         const j = await resp.json();
-//         console.log(j);	    
-//         })();
-
-//     var temp = document.getElementById("exercise_list");
-//     temp.removeChild(document.getElementById(id));
-// }
-
 function createNewEvent() {
     (async () => {
         var summary = "Routine";
