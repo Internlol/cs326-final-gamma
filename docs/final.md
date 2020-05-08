@@ -18,14 +18,26 @@ For our final project submission we have created an application that allows user
 ### User Interface
 
 * Index/Dashboard page: the home page for the user from where they can access all their application data. Page: index.html
+![index](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/index3.png)
 * My Exercises/My Workouts/My Routines: a list view of all of users available data (for a give data type i.e. exercises). From this page users can delete their existing data, view existing data, or select to edit (update) existing data. Pages: myexercises.html, myworkouts.html, myroutines.html
+![myexercises](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/myexercisesfinal.png)
+![myworkouts](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/myworkoutsfinal.png)
+![myroutines](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/myroutinesfinal.png)
 * My Calendars: user can view their publicly available Google Calendars. Page: mycalendars.html
+![mycalendars](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/mycalendarsfinal.png)
 * Create Exercise: create an exercise data type. Page: createexercise.html
+![createexercise](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/createexercisefinal.png)
 * Create Workout: create a workout data type. Page: createworkout.html
+![createworkout](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/createworkoutfinal.png)
 * Create Routine: create a routine data type. Page: createroutine.html
+![createroutine](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/createroutinefinal.png)
 * Edit Exercise: edit an existing exercise data. Page: editexercise.html
+![editexercise](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/updateexercisefinal.png)
 * Login/Account: Login page for user and user account. Currently not functional. Page: login.html, account.html
+![login](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/loginfinal.png)
+![account](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/accountfinal.png)
 * About: about our application. Page: about.html
+![about](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/aboutfinal.png)
 
 ### API
 
