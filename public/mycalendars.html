@@ -4,9 +4,8 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css">
-        <script src="gcalendars.js" defer></script>
-
-        <title>My Routines</title>
+        <script src="mycalendars.js" defer></script>
+        <title>My Calendars</title>
     </head>
     <body>
         <div class="container-fluid">
@@ -28,38 +27,50 @@
                 </div>
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <a href="createcalendar.html"><button id="create_calendar" type="button">Create Calendar</button></a>
+                    <!-- <a href="createcalendar.html"><button id="create_calendar" type="button">Create Calendar</button></a> -->
                 </div>
                 <div id="test-ics"></div>
             </div>
             <div class="row">
                 <div class="col-4">
+                    
                     <p>Below is a list of your calendars.</p>
-                    <ul class="list-group" id="available_calendars"></ul>
+                    <ul class="list-group" id="available_calendars">
+                        <li class="list-group-item">326 Test Calendar<button id="cal1" type="button" style="float:right" class="btn btn-info">Select</button></li>
+                        <li class="list-group-item">Calendar 2<button id="cal2" type="button" style="float:right" class="btn btn-info">Select</button></li>
+                        <li class="list-group-item">Gym<button id="cal3" type="button" style="float:right" class="btn btn-info">Select</button></li>
+                        <!-- <li class="list-group-item">Calendar 4<button id="cal4" type="button" style="float:right" class="btn btn-info">Select</button></li> -->
+                        <!-- <li class="list-group-item">Calendar 5<button id="cal5" type="button" style="float:right" class="btn btn-info">Select</button></li> -->
+                    </ul>
                 </div>
                 <div class="col-4">
+                    
                     <p>Below is a list of your routines.</p>
                     <ul class="list-group" id="available_routines"></ul>
                 </div>
                 <div class="col-4">
-                    <button id="add_event" type="button" class="btn btn-success">Add Routine</button>
+                    <br><br>
+                    <button id="add_event" type="button" class="btn btn-success">Add Routine</button><br><br>
                     <p>Selected Routine: </p>
                     <p id="selected_routine"></p>
                 </div>
             </div>
+            <div class="row">
+                <iframe id="iframe" src="https://calendar.google.com/calendar/embed?src=cs326gamma%40gmail.com&ctz=America%2FNew_York" style="border: 0" width="1110" height="700" frameborder="0" scrolling="no"></iframe>
+            </div>
         </div>
         
     <!--Add buttons to initiate auth sequence and sign out-->
-    <iframe src="https://calendar.google.com/calendar/embed?src=rp77f3ltpahkasbseu3vam9t9c%40group.calendar.google.com&ctz=America%2FNew_York" style="border: 0" width="1110" height="700" frameborder="0" scrolling="no"></iframe>
+    
         
     <button id="authorize_button" style="display: none;">Authorize</button>
     <button id="signout_button" style="display: none;">Sign Out</button>
 
     <pre id="content" style="white-space: pre-wrap;"></pre>
 
-        <script async defer src="https://apis.google.com/js/api.js"
+        <!-- <script async defer src="https://apis.google.com/js/api.js"
         onload="this.onload=function(){};handleClientLoad()"
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
-        </script>
+        </script> -->
     </body>
 </html>
