@@ -17,6 +17,16 @@ async function postData(url, data) {
     return resp;
 }
 
+function addEvent() {
+    (async () => {
+        const newURL = "https://www.googleapis.com/calendar/v3/calendars/rp77f3ltpahkasbseu3vam9t9c@group.calendar.google.com/events";
+        const data = { "summary": "test event", "end": { "dateTime": "2020-05-8T13:00:00-07:00" }, "start": { "dateTime": "2020-05-8T12:00:00-07:00" } };
+        const resp = await postData(newURL, data);
+        const j = await resp.json();
+        console.log(j);
+    })();
+}
+
 function selectItem(id) {
     var temp = document.getElementById("selected_routine");
     temp.innerHTML=id;
@@ -38,6 +48,7 @@ function cal3(id) {
 document.getElementById("cal1").addEventListener("click", cal1);
 document.getElementById("cal2").addEventListener("click", cal2);
 document.getElementById("cal3").addEventListener("click", cal3);
+// document.getElementById("add_event").addEventListener("click", addEvent);
 
 (async () => {
     console.log("fetching all routines from server");
