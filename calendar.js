@@ -87,15 +87,15 @@ function insertEvent(auth, calId, event) {
 // Example Event Object
 //
 // var event = {
-//     'summary': 'Google I/O 2015',
-//     'description': 'A chance to hear more about Google\'s developer products.',
+//     'summary': 'Test Event',
+//     'description': 'Workout / Exercises goes here',
 //     'start': {
-//       'dateTime': '2015-05-28T09:00:00-07:00',
-//       'timeZone': 'America/Los_Angeles',
+//       'dateTime': '2020-05-08T09:00:00-07:00',
+//       'timeZone': 'America/New_York',
 //     },
 //     'end': {
-//       'dateTime': '2015-05-28T17:00:00-07:00',
-//       'timeZone': 'America/Los_Angeles',
+//       'dateTime': '2020-05-08T17:00:00-07:00',
+//       'timeZone': 'America/New_York',
 //     },
 //     'recurrence': [
 //       'RRULE:FREQ=DAILY;COUNT=2'
