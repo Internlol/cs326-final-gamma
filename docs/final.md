@@ -116,3 +116,23 @@ Routine Document Structure:
 }
 
 Routine data is defined by two main components. To specify workoutData: it is made of JSON which have the form {workout document, start time, end time}. As you can see we again encapsulate some of our existing data types into the new data type basically making the new data type a superset of smaller ones.
+
+### URLs
+
+| URL        | function         |
+|---------------|---------------|
+| https://fast-tundra-84247.herokuapp.com/users/exercises/create   |  create an exercise datatype   |
+|https://fast-tundra-84247.herokuapp.com/users/workouts/create | create a workout datatype. |
+|https://fast-tundra-84247.herokuapp.com/users/routines/create | create a routines datatype |
+|https://fast-tundra-84247.herokuapp.com/users/exercises/readOne | read a single entry of given datatype (see url) |
+|https://fast-tundra-84247.herokuapp.com/users/routines/readOne | |
+|https://fast-tundra-84247.herokuapp.com/users/workouts/readOne| |
+|https://fast-tundra-84247.herokuapp.com/users/exercises/readAll| read all database entries of given datatype |
+|https://fast-tundra-84247.herokuapp.com/users/routines/readAll
+|https://fast-tundra-84247.herokuapp.com/users/workouts/readAll
+|https://fast-tundra-84247.herokuapp.com/users/exercises/update| update single entry of given datatype |
+|https://fast-tundra-84247.herokuapp.com/users/routines/update | | 
+|https://fast-tundra-84247.herokuapp.com/users/workouts/update| |
+|https://fast-tundra-84247.herokuapp.com/users/exercises/delete| delete single entry |
+|https://fast-tundra-84247.herokuapp.com/users/workouts/delete| |
+|https://fast-tundra-84247.herokuapp.com/users/routines/delete| |
