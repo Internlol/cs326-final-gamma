@@ -9,7 +9,7 @@
 For our final project submission we have created an application that allows users to create and manipulate fitness data. Users can create exercises, workouts, routines and also interact with calendars. Our application enables users to descriptively break down every aspect of their fitness regiment starting from exercises data type and working up to routines data type. We have implemented a hierarchal structure of data that allows users to easily build from exercises (which are at the core of any fitness plan) to more complex data. Originally we set out to create an application that accomodated the unique and specific aspects of any user's fitness plan while also allowing them to schedule on a calendar (that could be easily exported/integrated with Google Calendars). Our idea is unique in that most (if not all) fitness related applications track information like calories burned or heart rate or other data generated from fitness activities, but our app instead seeks to allow users to create and capture unique structures in their fitness plan (we specifically have trainers, coaches in mind who require detailed plans).
 
 ### Team Members
-| Member        | Email         |
+| Member        | Github ID         |
 |---------------|---------------|
 | Aaron Quang   |  Internlol    |
 | Arnold Joseph |  arnold-j     |
@@ -68,3 +68,51 @@ For our final project submission we have created an application that allows user
 | Parameter/Request Body| Description| Example|
 |-------------------|------------|--------|
 | name | Name of the Routine | {name: "routine1"}
+
+
+### Database
+
+
+Exercise Document structure
+
+{
+  
+  _id: <ObjectId1>,
+  
+  name: String // name of the exercise
+  
+  desc: String // exercise description
+  
+  setData:  Array // list of sets
+
+}
+
+The exercise is the smallest unit and contains three basic components. Set data is an array of JSON (that describes the sets that make up exercise).
+
+Workout Document Structure:
+
+{
+  
+  _id: <ObjectId1>,
+  
+  name: String // name of the workout
+  
+  exerciseData:  Array // list of exercises
+
+}
+
+Workout data is defined by two components. Exercise data is an array of Exercise documents (the entire exercise document above is a member of the array).
+
+Routine Document Structure:
+
+{
+  
+  _id: <ObjectId1>,
+  
+  name: String // name of the routine
+  
+  workoutData:  Array // list of workouts
+
+}
+
+Routine data is defined by two main components. To specify workoutData: it is made of JSON which have the form {workout document, start time, end time}. As you can see we again encapsulate some of our existing data types into the new data type basically making the new data type a superset of smaller ones.
