@@ -32,7 +32,7 @@ For our final project submission we have created an application that allows user
 * Create Routine: create a routine data type. Page: createroutine.html
 ![createroutine](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/createroutinefinal.png)
 * Edit Exercise: edit an existing exercise data. Page: editexercise.html
-![editexercise](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/editexercisefinal.png)
+![editexercise](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/updateexercisefinal.png)
 * Login/Account: Login page for user and user account. Currently not functional. Page: login.html, account.html
 ![login](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/loginfinal.png)
 ![account](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/accountfinal.png)
