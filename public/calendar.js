@@ -3,7 +3,8 @@ const readline = require('readline');
 const {google} = require('googleapis');
 
 // If modifying these scopes, delete token.json.
-const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
+// const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
+const SCOPES = ['https://www.googleapis.com/auth/calendar'];
 // The file token.json stores the user's access and refresh tokens, and is
 // created automatically when the authorization flow completes for the first
 // time.
@@ -82,3 +83,28 @@ function insertEvent(auth, calId, event) {
       });
 
 }
+
+// Example Event Object
+//
+// var event = {
+//     'summary': 'Google I/O 2015',
+//     'description': 'A chance to hear more about Google\'s developer products.',
+//     'start': {
+//       'dateTime': '2015-05-28T09:00:00-07:00',
+//       'timeZone': 'America/Los_Angeles',
+//     },
+//     'end': {
+//       'dateTime': '2015-05-28T17:00:00-07:00',
+//       'timeZone': 'America/Los_Angeles',
+//     },
+//     'recurrence': [
+//       'RRULE:FREQ=DAILY;COUNT=2'
+//     ],
+//     'reminders': {
+//       'useDefault': false,
+//       'overrides': [
+//         {'method': 'email', 'minutes': 24 * 60},
+//         {'method': 'popup', 'minutes': 10},
+//       ],
+//     },
+//   };
