@@ -97,7 +97,7 @@ function editItem(id) {
             let tSD = document.createElement("td");
             for(var i = 0; i < data.length; i++) {
                 let text = data[i].name;
-                p = document.createElement("p")
+                p = document.createElement("p");
                 p.innerText = text;
                 tSD.appendChild(p);
             }

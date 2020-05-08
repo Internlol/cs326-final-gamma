@@ -8,6 +8,19 @@
         <title>My Routines</title>
     </head>
     <body>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>
+                    <table style="width: 100%;" id="modalText">
+                        <tr>
+                            <th>Routine Name</th>
+                            <th>Workout</th>
+                        </tr>
+                    </table>
+                </p>
+            </div>
+        </div>
         <div class="container-fluid">
             <nav class="navbar navbar-light bg-light">
                 <div class="navbar-header">
@@ -34,5 +47,21 @@
                 </div>
             </div>
         </div>
+        <script>
+            var modal = document.getElementById("myModal");
+            var span = document.getElementsByClassName("close")[0];
+            span.onclick = function() {
+                var child = document.getElementById('modalTable');
+                child.parentNode.removeChild(child);
+                modal.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    var child = document.getElementById('modalTable');
+                    child.parentNode.removeChild(child);
+                    modal.style.display = "none";
+                }
+            } 
+        </script>
     </body>
 </html>

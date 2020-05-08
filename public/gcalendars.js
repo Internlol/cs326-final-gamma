@@ -50,6 +50,8 @@ function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
     authorizeButton.style.display = 'none';
     signoutButton.style.display = 'block';
+    //
+    calToList();
   } else {
     authorizeButton.style.display = 'block';
     signoutButton.style.display = 'none';
@@ -112,6 +114,14 @@ function listUpcomingEvents() {
       appendPre('No upcoming events found.');
     }
   });
+}
+
+function calToList() {
+  gapi.client.calendarList.list(
+    {
+      'showDeleted': false,
+    }
+  );
 }
 
 function insertCal(auth, name) {

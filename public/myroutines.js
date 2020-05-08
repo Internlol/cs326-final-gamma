@@ -72,6 +72,44 @@ function editItem(id) {
         var text = "";
         var temp = j[i];
         text += temp.name;
+
+        var viewButton = document.createElement("input");
+        viewButton.setAttribute("type", "button");
+        viewButton.setAttribute("value", "View");
+        viewButton.setAttribute("style", "float:right; margin-right:5px;");
+        viewButton.setAttribute("class", "btn btn-primary");
+        let obj = j[i];
+
+        viewButton.onclick = function view() {
+            stuff = obj;
+            console.log(stuff);
+            var modal = document.getElementById("myModal");
+            var table = document.createElement("tr");
+            table.setAttribute("id", "modalTable");
+            // table.setAttribute("style", "max-width: 50%;");
+            let tName = document.createElement("td");
+            tName.setAttribute("style", "max-width: 300px;");
+            tName.innerText = stuff.name;
+            let data = stuff.workoutData;
+            console.log(data);
+            table.appendChild(tName);
+            let tSD = document.createElement("td");
+            for(var i = 0; i < data.length; i++) {
+                let text = data[i].workout.name;
+                p = document.createElement("p");
+                p.innerText = text;
+                let times = document.createElement("p");
+                times.innerText = "Start: " + data[i].start + "\nEnd: " + data[i].end;
+                tSD.appendChild(p);
+                tSD.appendChild(times);
+                tSD.appendChild(document.createElement("br"));
+            }
+            tSD.setAttribute("style", "max-width: 300px;");
+            table.appendChild(tSD);
+            document.getElementById("modalText").appendChild(table);
+            modal.style.display = "block";
+        };
+
         deleteButton.setAttribute('id',text);
         deleteButton.setAttribute('onClick','deleteItem("'+text+'")');
         // editButton.setAttribute('id',text);
@@ -79,6 +117,7 @@ function editItem(id) {
         node.setAttribute("id", text);
         node.innerText = text;
         node.appendChild(deleteButton);
+        node.appendChild(viewButton);
         //node.appendChild(editButton);
         document.getElementById("routine_list").appendChild(node);
     }
