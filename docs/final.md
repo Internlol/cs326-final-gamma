@@ -23,6 +23,7 @@ For our final project submission we have created an application that allows user
 ![myexercises](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/myexercisesfinal.png)
 ![myworkouts](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/myworkoutsfinal.png)
 ![myroutines](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/myroutinesfinal.png)
+![view](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/viewfinal.png)
 * My Calendars: user can view their publicly available Google Calendars. Page: mycalendars.html
 ![mycalendars](https://github.com/Internlol/cs326-final-gamma/blob/master/docs/img/mycalendarsfinal.png)
 * Create Exercise: create an exercise data type. Page: createexercise.html
