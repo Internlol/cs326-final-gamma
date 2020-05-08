@@ -23,6 +23,7 @@
   "homepage": "https://github.com/Internlol/cs326-final-gamma#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "googleapis": "^39.2.0",
     "md5": "^2.2.1",
     "mongodb": "^3.5.6",
     "typescript": "^3.8.3"

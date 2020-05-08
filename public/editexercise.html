@@ -15,9 +15,6 @@
                         Fitness Planner
                     </a>
                 </div>
-                <!-- <span class="navbar-right"> -->
-                    <!-- <a href="#" class="navbar-right"><button id="login" type="button">Login</button></a> -->
-                <!-- </span> -->
                 <form class="form-inline my-2 my-lg-0 nav navbar-right">
                     <a class="btn btn-outline-success my-2 my-sm-0" href="login.html">Sign In</a>
                 </form>
@@ -25,24 +22,23 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class="col-4">
                     <h1>Update Exercise</h1>
                 </div>
-                <div class="col-lg-4 col-md-8 col-sm-12 col-xs-12">
-                    <a href="myexercises.html"><button class="btn btn-danger" id="discard_exercise" type="button">Discard Changes</button></a><br>
-                    <a><button class="btn btn-info" id="create_exercise" type="button">Save and Update Exercise</button></a><br>
+                <div class="col-4"></div>
+                <div class="col-4 text-center align-self-center">
+                    <a href="myexercises.html"><button class="btn btn-danger" id="discard_exercise" type="button">Cancel</button></a>
+                    <a><button class="btn btn-success" id="create_exercise" type="button">Update</button></a>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-4">
+                <div class="col">
                     <label for="name">Name Your Exercise:</label><br>
                     <input type="text" id="name" required><br><br>
                     <label for="desc">Add a Description:</label><br>
                     <textarea rows="6" id="desc"></textarea><br><br>
-                    <!-- <label for="upload_media">Add a picture or video:</label>
-                    <button id="upload_media" type="button">Upload</button><br> -->
                 </div>
-                <div class="col-lg-4 col-md-4">
+                <div class="col">
                     <label for="repCount">How many reps for this set?</label><br>
                     <input type="text" id="repCount"><br><br>
                     <label for="setLength">How long does this set last?</label><br>
@@ -53,31 +49,8 @@
                     <button class="btn btn-light" id="remove_set" type="button">Remove Last Set</button><br><br>
                     <p>Sets:</p>
                     <ul id="set_list" class="list-group"></ul>
-                    <!-- <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Set
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    Set 1 Reps: 12 Rest: 30s
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Set 2 Reps: 12 Rest: 30s
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table> -->
                 </div>
-                <div class="col-lg-4 col-md-4">
-
-                </div>
+                <div class="col"></div>
             </div>
         </div>
     </body>

@@ -8,6 +8,19 @@
         <title>My Routines</title>
     </head>
     <body>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>
+                    <table style="width: 100%;" id="modalText">
+                        <tr>
+                            <th>Routine Name</th>
+                            <th>Workout</th>
+                        </tr>
+                    </table>
+                </p>
+            </div>
+        </div>
         <div class="container-fluid">
             <nav class="navbar navbar-light bg-light">
                 <div class="navbar-header">
@@ -22,17 +35,31 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col">
                     <h1>My Routines</h1>
                     <p>Below is a list of your routines.</p>
-                    <ul class="list-group" id="routine_list">
-
-                    </ul>
+                    <ul class="list-group" id="routine_list"></ul>
                 </div>
-                <div class="col-lg-4">
+                <div class="col text-center align-self-center">
                     <a href="createroutine.html"><button class="btn btn-success" id="create_routine" type="button">Create Routine</button></a>
                 </div>
             </div>
         </div>
+        <script>
+            var modal = document.getElementById("myModal");
+            var span = document.getElementsByClassName("close")[0];
+            span.onclick = function() {
+                var child = document.getElementById('modalTable');
+                child.parentNode.removeChild(child);
+                modal.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    var child = document.getElementById('modalTable');
+                    child.parentNode.removeChild(child);
+                    modal.style.display = "none";
+                }
+            } 
+        </script>
     </body>
 </html>

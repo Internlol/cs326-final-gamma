@@ -74,6 +74,39 @@ function editItem(id) {
         var text = "";
         var temp = j[i];
         text += temp.name;
+
+        var viewButton = document.createElement("input");
+        viewButton.setAttribute("type", "button");
+        viewButton.setAttribute("value", "View");
+        viewButton.setAttribute("style", "float:right; margin-right:5px;");
+        viewButton.setAttribute("class", "btn btn-primary");
+        let obj = j[i];
+
+        viewButton.onclick = function view() {
+            stuff = obj;
+            console.log(stuff);
+            var modal = document.getElementById("myModal");
+            var table = document.createElement("tr");
+            table.setAttribute("id", "modalTable");
+            // table.setAttribute("style", "max-width: 50%;");
+            let tName = document.createElement("td");
+            tName.setAttribute("style", "max-width: 300px;");
+            tName.innerText = stuff.name;
+            let data = stuff.exerciseData;
+            table.appendChild(tName);
+            let tSD = document.createElement("td");
+            for(var i = 0; i < data.length; i++) {
+                let text = data[i].name;
+                p = document.createElement("p");
+                p.innerText = text;
+                tSD.appendChild(p);
+            }
+            tSD.setAttribute("style", "max-width: 300px;");
+            table.appendChild(tSD);
+            document.getElementById("modalText").appendChild(table);
+            modal.style.display = "block";
+        };
+
         deleteButton.setAttribute('id',text);
         deleteButton.setAttribute('onClick','deleteItem("'+text+'")');
         editButton.setAttribute('id',text);
@@ -81,6 +114,7 @@ function editItem(id) {
         node.setAttribute("id", text);
         node.innerText = text;
         node.appendChild(deleteButton);
+        node.appendChild(viewButton);
         //node.appendChild(editButton);
         document.getElementById("workout_list").appendChild(node);
         lastid += 1;

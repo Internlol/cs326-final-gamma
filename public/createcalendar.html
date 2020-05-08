@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css">
-        <title>Create Routine</title>
+        <title>Create Calendar</title>
     </head>
     <body>
         <!--nav bar start -->
@@ -24,62 +24,33 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-8"><br>
+                <div class="col-4"><br>
                     <h1>Create Calendar</h1>
                 </div>
-                <div class="col-lg-4">
-                    <br><a href="mycalendars.html"><button id="discard_calendar" type="button">Discard Calendar</button></a><br><br>
-                    <a href="mycalendars.html"><button id="create_calendar" type="button">Save and Add Calendar</button></a><br>
+                <div class="col-4"></div>
+                <div class="col-4 text-center align-self-center">
+                    <br><a href="mycalendars.html"><button id="discard_calendar" type="button" class="btn btn-danger">Discard</button></a><br><br>
+                    <a href="mycalendars.html"><button id="create_calendar" type="button" class="btn btn-success">Create</button></a><br>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-4">
                     <p>
                         Calendar Name:
                     </p>
-                    <input type="text"><br>
+                    <input type="text" id="name"><br>
                     <p>
                         Description:
                     </p>
-                    <textarea rows="6"></textarea>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Available Routines
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    Routine 1
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Routine 2
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Routine 3
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Routine 4
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <textarea rows="6" id="desc"></textarea>
+
                     <button id="discard_calendar" type="button">Change Routine</button><br><br>
                     <button id="create_calendar" type="button">Set Routine</button><br>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-4">
                     <br><iframe src="https://calendar.google.com/calendar/embed?src=umass.edu_l664sq5n14rf9g0gbt6rr3sdj8%40group.calendar.google.com&ctz=America%2FNew_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-4">
                     
                 </div>
                 
