@@ -48,7 +48,8 @@ class Database {
         return __awaiter(this, void 0, void 0, function* () {
             let db = this.client.db(this.dbName);
             let collection = db.collection("workouts");
-            let result = yield collection.updateOne({ 'name': name }, { $set: { 'exerciseData': exerciseData } }, { 'upsert': true });
+            let d = new Date();
+            let result = yield collection.updateOne({ 'name': d.getDate() }, { $set: { 'exerciseData': exerciseData } }, { 'upsert': true });
         });
     }
     getWorkout(name) {
